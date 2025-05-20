@@ -1,22 +1,28 @@
 use MusicFlow;
 
+Create database MusicFlow;
+
+/*drop database MusicFlow;*/
+
 create table Evento 
 (
 	Id int identity(1,1),
 	Nome varchar(100) not null,
 	DataCadastro datetime not null,
 	DataEvento date not null,
-	HoraEvento time, -- Pode não ser descrita a hora.
+	HoraEvento time,
 	Observacao varchar(500),
 	Status char,
 	constraint pk_Evento primary key (Id)
 );
 
+/*Drop table Evento;*/
+
 create table Musica 
 (
 	Id int identity(1,1),
 	Nome varchar(100) not null,
-	VozPrincipal int,
+	VozPrincipal int not null,
 	Versao varchar(100) not null,
 	DataCadastro datetime,
 	Observacao varchar(500),
@@ -45,6 +51,8 @@ create table IntegranteBanda
 	constraint pk_IntegranteBanda primary key (Id)
 );
 
+/*Drop table IntegranteBanda;*/
+
 create table Funcao 
 (
 	Id int identity(1,1),
@@ -53,6 +61,8 @@ create table Funcao
 	Status char not null,
 	constraint pk_Funcao primary key (Id)
 );
+
+/*Drop Table Funcao;*/
 
 -- Tabelas de Relacionamento
 
@@ -66,6 +76,8 @@ create table MusicoFuncao
 	Foreign key (IdMusico) references IntegranteBanda(Id)
 );
 
+/*Drop Table MusicoFuncao;*/
+
 create table EventoSetlist 
 (
 	Id int identity(1,1),
@@ -75,6 +87,9 @@ create table EventoSetlist
 	Foreign key (IdEvento) references Evento(Id),
 	Foreign key (IdMusica) references Musica(Id)
 );
+
+/*Drop Table EventoSetlist;*/
+
 create table EventoBanda
 (
 	Id int identity(1,1),
@@ -85,14 +100,4 @@ create table EventoBanda
 	Foreign key (IdMusico) references IntegranteBanda(Id)
 );
 
-
-drop table Evento;
-drop table IntegranteBanda;
-drop table Musica;
-drop table Funcao;
-drop table MusicoFuncao;
-drop table EventoSetlist;
-drop table EventoBanda;
-
-
-
+/*Drop Table EventoBanda;*/

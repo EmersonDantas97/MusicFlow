@@ -123,6 +123,7 @@
             this.btnSalvar.TabIndex = 4;
             this.btnSalvar.Text = "F1 - Salvar ";
             this.btnSalvar.UseVisualStyleBackColor = true;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // btnExcluir
             // 
@@ -413,6 +414,7 @@
             this.Name = "frmCadastroMusica";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Músico";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmCadastroMusica_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvIntegrantes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

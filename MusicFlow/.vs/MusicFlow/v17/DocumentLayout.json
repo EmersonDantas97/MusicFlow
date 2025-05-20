@@ -1,7 +1,28 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\EMERSON\\Curso JN Moura\\MusicFlow\\MusicFlow\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B188836D-A731-4DAD-A42B-1163F2C04B99}|MusicFlow\\MusicFlow.csproj|d:\\emerson\\curso jn moura\\musicflow\\musicflow\\musicflow\\repository\\musicarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B188836D-A731-4DAD-A42B-1163F2C04B99}|MusicFlow\\MusicFlow.csproj|solutionrelative:musicflow\\repository\\musicarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B188836D-A731-4DAD-A42B-1163F2C04B99}|MusicFlow\\MusicFlow.csproj|d:\\emerson\\curso jn moura\\musicflow\\musicflow\\musicflow\\view\\frmcadastromusica.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B188836D-A731-4DAD-A42B-1163F2C04B99}|MusicFlow\\MusicFlow.csproj|solutionrelative:musicflow\\view\\frmcadastromusica.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B188836D-A731-4DAD-A42B-1163F2C04B99}|MusicFlow\\MusicFlow.csproj|d:\\emerson\\curso jn moura\\musicflow\\musicflow\\musicflow\\controller\\musicascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B188836D-A731-4DAD-A42B-1163F2C04B99}|MusicFlow\\MusicFlow.csproj|solutionrelative:musicflow\\controller\\musicascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B188836D-A731-4DAD-A42B-1163F2C04B99}|MusicFlow\\MusicFlow.csproj|d:\\emerson\\curso jn moura\\musicflow\\musicflow\\musicflow\\view\\frmcadastromusica.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{B188836D-A731-4DAD-A42B-1163F2C04B99}|MusicFlow\\MusicFlow.csproj|solutionrelative:musicflow\\view\\frmcadastromusica.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B188836D-A731-4DAD-A42B-1163F2C04B99}|MusicFlow\\MusicFlow.csproj|d:\\emerson\\curso jn moura\\musicflow\\musicflow\\musicflow\\controller\\funcoescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B188836D-A731-4DAD-A42B-1163F2C04B99}|MusicFlow\\MusicFlow.csproj|solutionrelative:musicflow\\controller\\funcoescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,8 +30,48 @@
       "DocumentGroups": [
         {
           "DockedWidth": 84,
-          "SelectedChildIndex": -1,
-          "Children": []
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MusicaRepository.cs",
+              "DocumentMoniker": "D:\\EMERSON\\Curso JN Moura\\MusicFlow\\MusicFlow\\MusicFlow\\Repository\\MusicaRepository.cs",
+              "RelativeDocumentMoniker": "MusicFlow\\Repository\\MusicaRepository.cs",
+              "ToolTip": "D:\\EMERSON\\Curso JN Moura\\MusicFlow\\MusicFlow\\MusicFlow\\Repository\\MusicaRepository.cs",
+              "RelativeToolTip": "MusicFlow\\Repository\\MusicaRepository.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAAAHEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T16:37:46.909Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MusicasController.cs",
+              "DocumentMoniker": "D:\\EMERSON\\Curso JN Moura\\MusicFlow\\MusicFlow\\MusicFlow\\Controller\\MusicasController.cs",
+              "RelativeDocumentMoniker": "MusicFlow\\Controller\\MusicasController.cs",
+              "ToolTip": "D:\\EMERSON\\Curso JN Moura\\MusicFlow\\MusicFlow\\MusicFlow\\Controller\\MusicasController.cs",
+              "RelativeToolTip": "MusicFlow\\Controller\\MusicasController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T16:37:43.588Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "FuncoesController.cs",
+              "DocumentMoniker": "D:\\EMERSON\\Curso JN Moura\\MusicFlow\\MusicFlow\\MusicFlow\\Controller\\FuncoesController.cs",
+              "RelativeDocumentMoniker": "MusicFlow\\Controller\\FuncoesController.cs",
+              "ToolTip": "D:\\EMERSON\\Curso JN Moura\\MusicFlow\\MusicFlow\\MusicFlow\\Controller\\FuncoesController.cs",
+              "RelativeToolTip": "MusicFlow\\Controller\\FuncoesController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA0AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T16:31:19.128Z",
+              "EditorCaption": ""
+            }
+          ]
         },
         {
           "DockedWidth": 84,
@@ -19,6 +80,52 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "FloatingWindowState": {
+        "Id": "63906424-a223-4073-8b88-0bd0996ee7a6",
+        "Display": 0,
+        "X": 516,
+        "Y": 45,
+        "Width": 1118,
+        "Height": 464,
+        "WindowState": 2
+      },
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "frmCadastroMusica.cs",
+              "DocumentMoniker": "D:\\EMERSON\\Curso JN Moura\\MusicFlow\\MusicFlow\\MusicFlow\\View\\frmCadastroMusica.cs",
+              "RelativeDocumentMoniker": "MusicFlow\\View\\frmCadastroMusica.cs",
+              "ToolTip": "D:\\EMERSON\\Curso JN Moura\\MusicFlow\\MusicFlow\\MusicFlow\\View\\frmCadastroMusica.cs",
+              "RelativeToolTip": "MusicFlow\\View\\frmCadastroMusica.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAQwAgAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T16:32:04.471Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "frmCadastroMusica.cs [Design]",
+              "DocumentMoniker": "D:\\EMERSON\\Curso JN Moura\\MusicFlow\\MusicFlow\\MusicFlow\\View\\frmCadastroMusica.cs",
+              "RelativeDocumentMoniker": "MusicFlow\\View\\frmCadastroMusica.cs",
+              "ToolTip": "D:\\EMERSON\\Curso JN Moura\\MusicFlow\\MusicFlow\\MusicFlow\\View\\frmCadastroMusica.cs [Design]",
+              "RelativeToolTip": "MusicFlow\\View\\frmCadastroMusica.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T16:31:52.142Z",
+              "EditorCaption": " [Design]"
             }
           ]
         }

@@ -9,3 +9,4 @@ D:\EMERSON\Curso JN Moura\MusicFlow\MusicFlow\MusicFlow\obj\Debug\MusicFlow.cspr
 D:\EMERSON\Curso JN Moura\MusicFlow\MusicFlow\MusicFlow\obj\Debug\MusicFlow.csproj.CoreCompileInputs.cache
 D:\EMERSON\Curso JN Moura\MusicFlow\MusicFlow\MusicFlow\obj\Debug\MusicFlow.exe
 D:\EMERSON\Curso JN Moura\MusicFlow\MusicFlow\MusicFlow\obj\Debug\MusicFlow.pdb
+D:\EMERSON\Curso JN Moura\MusicFlow\MusicFlow\MusicFlow\obj\Debug\MusicFlow.View.frmCadastroMusica.resources

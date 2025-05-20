@@ -93,6 +93,9 @@
     <EmbeddedResource Include="View\frmCadastroIntegrante.resx">
       <DependentUpon>frmCadastroIntegrante.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\frmCadastroMusica.resx">
+      <DependentUpon>frmCadastroMusica.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
