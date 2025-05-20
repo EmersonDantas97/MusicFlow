@@ -16,7 +16,7 @@ create table Musica
 (
 	Id int identity(1,1),
 	Nome varchar(100) not null,
-	Interprete int,
+	VozPrincipal int,
 	Versao varchar(100) not null,
 	DataCadastro datetime,
 	Observacao varchar(500),
@@ -28,8 +28,11 @@ create table Musica
 	LinkVideo varchar(200), 
 	LinkCifra varchar(200),
 	Status char not null,
-	constraint pk_Musica primary key (Id)
+	constraint pk_Musica primary key (Id),
+	Foreign key (VozPrincipal) references IntegranteBanda(Id),
 );
+
+/*Drop Table Musica;*/
 
 create table IntegranteBanda 
 (
