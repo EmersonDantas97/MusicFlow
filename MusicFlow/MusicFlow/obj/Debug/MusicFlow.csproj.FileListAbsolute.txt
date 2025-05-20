@@ -1,0 +1,11 @@
+D:\EMERSON\Curso JN Moura\MusicFlow\MusicFlow\MusicFlow\bin\Debug\MusicFlow.exe.config
+D:\EMERSON\Curso JN Moura\MusicFlow\MusicFlow\MusicFlow\bin\Debug\MusicFlow.exe
+D:\EMERSON\Curso JN Moura\MusicFlow\MusicFlow\MusicFlow\bin\Debug\MusicFlow.pdb
+D:\EMERSON\Curso JN Moura\MusicFlow\MusicFlow\MusicFlow\obj\Debug\MusicFlow.csproj.AssemblyReference.cache
+D:\EMERSON\Curso JN Moura\MusicFlow\MusicFlow\MusicFlow\obj\Debug\MusicFlow.Properties.Resources.resources
+D:\EMERSON\Curso JN Moura\MusicFlow\MusicFlow\MusicFlow\obj\Debug\MusicFlow.frmAdministrativo.resources
+D:\EMERSON\Curso JN Moura\MusicFlow\MusicFlow\MusicFlow\obj\Debug\MusicFlow.View.frmCadastroIntegrante.resources
+D:\EMERSON\Curso JN Moura\MusicFlow\MusicFlow\MusicFlow\obj\Debug\MusicFlow.csproj.GenerateResource.cache
+D:\EMERSON\Curso JN Moura\MusicFlow\MusicFlow\MusicFlow\obj\Debug\MusicFlow.csproj.CoreCompileInputs.cache
+D:\EMERSON\Curso JN Moura\MusicFlow\MusicFlow\MusicFlow\obj\Debug\MusicFlow.exe
+D:\EMERSON\Curso JN Moura\MusicFlow\MusicFlow\MusicFlow\obj\Debug\MusicFlow.pdb

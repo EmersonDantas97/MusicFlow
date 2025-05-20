@@ -44,16 +44,16 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtPesquisar = new System.Windows.Forms.TextBox();
             this.dgvIntegrantes = new System.Windows.Forms.DataGridView();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtCodigo = new System.Windows.Forms.TextBox();
             this.dgcIId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgcINome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgcIFone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgcIDataAniversario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgcIDataCadastro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgcIFuncoes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtCodigo = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFuncoes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIntegrantes)).BeginInit();
             this.SuspendLayout();
@@ -158,6 +158,7 @@
             this.btnSalvar.TabIndex = 4;
             this.btnSalvar.Text = "F1 - Salvar ";
             this.btnSalvar.UseVisualStyleBackColor = true;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // btnExcluir
             // 
@@ -200,41 +201,6 @@
             this.dgvIntegrantes.Size = new System.Drawing.Size(564, 420);
             this.dgvIntegrantes.TabIndex = 7;
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(110, 174);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(72, 13);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "F4 - Adicionar";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(692, 10);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(74, 13);
-            this.label7.TabIndex = 14;
-            this.label7.Text = "F3 - Pesquisar";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(12, 10);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(40, 13);
-            this.label8.TabIndex = 16;
-            this.label8.Text = "Código";
-            // 
-            // txtCodigo
-            // 
-            this.txtCodigo.Enabled = false;
-            this.txtCodigo.Location = new System.Drawing.Point(12, 25);
-            this.txtCodigo.Name = "txtCodigo";
-            this.txtCodigo.Size = new System.Drawing.Size(170, 20);
-            this.txtCodigo.TabIndex = 8;
-            // 
             // dgcIId
             // 
             this.dgcIId.HeaderText = "Id";
@@ -273,7 +239,42 @@
             this.dgcIFuncoes.ReadOnly = true;
             this.dgcIFuncoes.Width = 1000;
             // 
-            // frmCadastroIntegrantes
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(110, 174);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(72, 13);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "F4 - Adicionar";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(692, 10);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(74, 13);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "F3 - Pesquisar";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(12, 10);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(40, 13);
+            this.label8.TabIndex = 16;
+            this.label8.Text = "Código";
+            // 
+            // txtCodigo
+            // 
+            this.txtCodigo.Enabled = false;
+            this.txtCodigo.Location = new System.Drawing.Point(12, 25);
+            this.txtCodigo.Name = "txtCodigo";
+            this.txtCodigo.Size = new System.Drawing.Size(170, 20);
+            this.txtCodigo.TabIndex = 8;
+            // 
+            // frmCadastroIntegrante
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -297,9 +298,11 @@
             this.Controls.Add(this.txtNome);
             this.KeyPreview = true;
             this.MaximizeBox = false;
-            this.Name = "frmCadastroIntegrantes";
+            this.Name = "frmCadastroIntegrante";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Músico";
+            this.Load += new System.EventHandler(this.frmCadastroIntegrante_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmCadastroIntegrante_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dgvFuncoes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIntegrantes)).EndInit();
             this.ResumeLayout(false);

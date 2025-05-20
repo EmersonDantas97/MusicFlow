@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MusicFlow.View;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,18 @@ namespace MusicFlow
         public frmAdministrativo()
         {
             InitializeComponent();
+        }
+
+        private void musicaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCadastroMusica formulario = new frmCadastroMusica();
+            formulario.ShowDialog();
+        }
+
+        private void integranteDaBandaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCadastroIntegrante formulario = new frmCadastroIntegrante();
+            formulario.ShowDialog();
         }
     }
 }

@@ -33,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -48,9 +49,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\FuncoesController.cs" />
+    <Compile Include="Controller\IntegrantesBandaController.cs" />
     <Compile Include="Models\Funcao.cs" />
     <Compile Include="Models\ICadastro.cs" />
+    <Compile Include="Models\IntegranteBanda.cs" />
     <Compile Include="Repository\FuncaoRepository.cs" />
+    <Compile Include="Repository\IntegranteBandaRepository.cs" />
     <Compile Include="View\frmAdministrativo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +84,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\frmAdministrativo.resx">
+      <DependentUpon>frmAdministrativo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\frmCadastroIntegrante.resx">
+      <DependentUpon>frmCadastroIntegrante.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
