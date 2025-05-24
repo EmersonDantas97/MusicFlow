@@ -129,7 +129,7 @@ namespace MusicFlow.Repository
 
             string scriptSql =
                 "UPDATE Funcao " +
-                "SET Nome = @Nome, DataCadastro = @DataCadastro) " +
+                "SET Nome = @Nome, DataCadastro = @DataCadastro " +
                 "WHERE Id = @Id;";
 
             using (SqlConnection conn = new SqlConnection(_conexao))
