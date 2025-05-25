@@ -46,6 +46,8 @@
             this.dgvBanda = new System.Windows.Forms.DataGridView();
             this.dgcSelecao = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dgcNome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgcIdIntegrante = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgcIdFuncao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMusicas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBanda)).BeginInit();
             this.SuspendLayout();
@@ -159,7 +161,7 @@
             this.txtObservacao.Multiline = true;
             this.txtObservacao.Name = "txtObservacao";
             this.txtObservacao.Size = new System.Drawing.Size(170, 45);
-            this.txtObservacao.TabIndex = 32;
+            this.txtObservacao.TabIndex = 2;
             // 
             // dtpDataEvento
             // 
@@ -167,7 +169,7 @@
             this.dtpDataEvento.Location = new System.Drawing.Point(12, 109);
             this.dtpDataEvento.Name = "dtpDataEvento";
             this.dtpDataEvento.Size = new System.Drawing.Size(170, 20);
-            this.dtpDataEvento.TabIndex = 34;
+            this.dtpDataEvento.TabIndex = 1;
             // 
             // label3
             // 
@@ -184,12 +186,14 @@
             this.dgvBanda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvBanda.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgcSelecao,
-            this.dgcNome});
+            this.dgcNome,
+            this.dgcIdIntegrante,
+            this.dgcIdFuncao});
             this.dgvBanda.Location = new System.Drawing.Point(12, 218);
             this.dgvBanda.Name = "dgvBanda";
             this.dgvBanda.RowHeadersVisible = false;
             this.dgvBanda.Size = new System.Drawing.Size(170, 219);
-            this.dgvBanda.TabIndex = 37;
+            this.dgvBanda.TabIndex = 3;
             // 
             // dgcSelecao
             // 
@@ -203,6 +207,20 @@
             this.dgcNome.Name = "dgcNome";
             this.dgcNome.ReadOnly = true;
             this.dgcNome.Width = 400;
+            // 
+            // dgcIdIntegrante
+            // 
+            this.dgcIdIntegrante.HeaderText = "Id Integrante";
+            this.dgcIdIntegrante.Name = "dgcIdIntegrante";
+            this.dgcIdIntegrante.ReadOnly = true;
+            this.dgcIdIntegrante.Visible = false;
+            // 
+            // dgcIdFuncao
+            // 
+            this.dgcIdFuncao.HeaderText = "Id Funcao";
+            this.dgcIdFuncao.Name = "dgcIdFuncao";
+            this.dgcIdFuncao.ReadOnly = true;
+            this.dgcIdFuncao.Visible = false;
             // 
             // frmCadastroEvento
             // 
@@ -230,6 +248,7 @@
             this.Name = "frmCadastroEvento";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastro de Evento";
+            this.Load += new System.EventHandler(this.frmCadastroEvento_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMusicas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBanda)).EndInit();
             this.ResumeLayout(false);
@@ -257,5 +276,7 @@
         private System.Windows.Forms.DataGridView dgvBanda;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dgcSelecao;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgcNome;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgcIdIntegrante;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgcIdFuncao;
     }
 }
