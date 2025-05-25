@@ -29,5 +29,11 @@ namespace MusicFlow
             frmCadastroIntegrante formulario = new frmCadastroIntegrante();
             formulario.ShowDialog();
         }
+
+        private void eventoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCadastroEvento formulario = new frmCadastroEvento();
+            formulario.ShowDialog();
+        }
     }
 }

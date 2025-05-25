@@ -38,13 +38,7 @@
             this.btnExcluir = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.txtPesquisar = new System.Windows.Forms.TextBox();
-            this.dgvIntegrantes = new System.Windows.Forms.DataGridView();
-            this.dgcIId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgcINome = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgcIFone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgcIDataAniversario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgcIDataCadastro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgcIFuncoes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvMusicas = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.txtCodigo = new System.Windows.Forms.TextBox();
@@ -64,7 +58,20 @@
             this.txtObservacao = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.cmbVozPrincipal = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvIntegrantes)).BeginInit();
+            this.dgcIId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgcINome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dvcVersao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dvcTom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dvcVozPrincipal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dvcBpm = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dvcObservacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dvcTomOriginal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dvcDataCadastro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dvcCompasso = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dvcTemVs = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dvcLinkVideo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dvcLinkCifra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMusicas)).BeginInit();
             this.SuspendLayout();
             // 
             // txtTitulo
@@ -150,59 +157,28 @@
             this.txtPesquisar.Size = new System.Drawing.Size(564, 20);
             this.txtPesquisar.TabIndex = 6;
             // 
-            // dgvIntegrantes
+            // dgvMusicas
             // 
-            this.dgvIntegrantes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvIntegrantes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvMusicas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMusicas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgcIId,
             this.dgcINome,
-            this.dgcIFone,
-            this.dgcIDataAniversario,
-            this.dgcIDataCadastro,
-            this.dgcIFuncoes});
-            this.dgvIntegrantes.Location = new System.Drawing.Point(202, 51);
-            this.dgvIntegrantes.Name = "dgvIntegrantes";
-            this.dgvIntegrantes.RowHeadersVisible = false;
-            this.dgvIntegrantes.Size = new System.Drawing.Size(564, 420);
-            this.dgvIntegrantes.TabIndex = 7;
-            // 
-            // dgcIId
-            // 
-            this.dgcIId.HeaderText = "Id";
-            this.dgcIId.Name = "dgcIId";
-            this.dgcIId.ReadOnly = true;
-            this.dgcIId.Width = 50;
-            // 
-            // dgcINome
-            // 
-            this.dgcINome.HeaderText = "Nome";
-            this.dgcINome.Name = "dgcINome";
-            this.dgcINome.ReadOnly = true;
-            // 
-            // dgcIFone
-            // 
-            this.dgcIFone.HeaderText = "Whats";
-            this.dgcIFone.Name = "dgcIFone";
-            this.dgcIFone.ReadOnly = true;
-            // 
-            // dgcIDataAniversario
-            // 
-            this.dgcIDataAniversario.HeaderText = "Aniversario";
-            this.dgcIDataAniversario.Name = "dgcIDataAniversario";
-            this.dgcIDataAniversario.ReadOnly = true;
-            // 
-            // dgcIDataCadastro
-            // 
-            this.dgcIDataCadastro.HeaderText = "Data Cadastro";
-            this.dgcIDataCadastro.Name = "dgcIDataCadastro";
-            this.dgcIDataCadastro.ReadOnly = true;
-            // 
-            // dgcIFuncoes
-            // 
-            this.dgcIFuncoes.HeaderText = "Funções";
-            this.dgcIFuncoes.Name = "dgcIFuncoes";
-            this.dgcIFuncoes.ReadOnly = true;
-            this.dgcIFuncoes.Width = 1000;
+            this.dvcVersao,
+            this.dvcTom,
+            this.dvcVozPrincipal,
+            this.dvcBpm,
+            this.dvcObservacao,
+            this.dvcTomOriginal,
+            this.dvcDataCadastro,
+            this.dvcCompasso,
+            this.dvcTemVs,
+            this.dvcLinkVideo,
+            this.dvcLinkCifra});
+            this.dgvMusicas.Location = new System.Drawing.Point(202, 51);
+            this.dgvMusicas.Name = "dgvMusicas";
+            this.dgvMusicas.RowHeadersVisible = false;
+            this.dgvMusicas.Size = new System.Drawing.Size(564, 420);
+            this.dgvMusicas.TabIndex = 7;
             // 
             // label7
             // 
@@ -374,6 +350,85 @@
             this.cmbVozPrincipal.Size = new System.Drawing.Size(170, 21);
             this.cmbVozPrincipal.TabIndex = 37;
             // 
+            // dgcIId
+            // 
+            this.dgcIId.HeaderText = "Id";
+            this.dgcIId.Name = "dgcIId";
+            this.dgcIId.ReadOnly = true;
+            this.dgcIId.Width = 50;
+            // 
+            // dgcINome
+            // 
+            this.dgcINome.HeaderText = "Nome";
+            this.dgcINome.Name = "dgcINome";
+            this.dgcINome.ReadOnly = true;
+            // 
+            // dvcVersao
+            // 
+            this.dvcVersao.HeaderText = "Versão";
+            this.dvcVersao.Name = "dvcVersao";
+            this.dvcVersao.ReadOnly = true;
+            // 
+            // dvcTom
+            // 
+            this.dvcTom.HeaderText = "Tom";
+            this.dvcTom.Name = "dvcTom";
+            this.dvcTom.ReadOnly = true;
+            // 
+            // dvcVozPrincipal
+            // 
+            this.dvcVozPrincipal.HeaderText = "Voz";
+            this.dvcVozPrincipal.Name = "dvcVozPrincipal";
+            this.dvcVozPrincipal.ReadOnly = true;
+            // 
+            // dvcBpm
+            // 
+            this.dvcBpm.HeaderText = "Bpm";
+            this.dvcBpm.Name = "dvcBpm";
+            this.dvcBpm.ReadOnly = true;
+            // 
+            // dvcObservacao
+            // 
+            this.dvcObservacao.HeaderText = "Observação";
+            this.dvcObservacao.Name = "dvcObservacao";
+            this.dvcObservacao.ReadOnly = true;
+            // 
+            // dvcTomOriginal
+            // 
+            this.dvcTomOriginal.HeaderText = "Tom Original";
+            this.dvcTomOriginal.Name = "dvcTomOriginal";
+            this.dvcTomOriginal.ReadOnly = true;
+            // 
+            // dvcDataCadastro
+            // 
+            this.dvcDataCadastro.HeaderText = "Data de Cadastro";
+            this.dvcDataCadastro.Name = "dvcDataCadastro";
+            this.dvcDataCadastro.ReadOnly = true;
+            // 
+            // dvcCompasso
+            // 
+            this.dvcCompasso.HeaderText = "Compasso";
+            this.dvcCompasso.Name = "dvcCompasso";
+            this.dvcCompasso.ReadOnly = true;
+            // 
+            // dvcTemVs
+            // 
+            this.dvcTemVs.HeaderText = "Tem VS";
+            this.dvcTemVs.Name = "dvcTemVs";
+            this.dvcTemVs.ReadOnly = true;
+            // 
+            // dvcLinkVideo
+            // 
+            this.dvcLinkVideo.HeaderText = "Video";
+            this.dvcLinkVideo.Name = "dvcLinkVideo";
+            this.dvcLinkVideo.ReadOnly = true;
+            // 
+            // dvcLinkCifra
+            // 
+            this.dvcLinkCifra.HeaderText = "Cifra";
+            this.dvcLinkCifra.Name = "dvcLinkCifra";
+            this.dvcLinkCifra.ReadOnly = true;
+            // 
             // frmCadastroMusica
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -398,7 +453,7 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txtCodigo);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.dgvIntegrantes);
+            this.Controls.Add(this.dgvMusicas);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtPesquisar);
             this.Controls.Add(this.btnExcluir);
@@ -413,9 +468,10 @@
             this.MaximizeBox = false;
             this.Name = "frmCadastroMusica";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Cadastro de Músico";
+            this.Text = "Cadastro de Música";
+            this.Load += new System.EventHandler(this.frmCadastroMusica_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmCadastroMusica_KeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvIntegrantes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMusicas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -431,16 +487,10 @@
         private System.Windows.Forms.Button btnExcluir;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtPesquisar;
-        private System.Windows.Forms.DataGridView dgvIntegrantes;
+        private System.Windows.Forms.DataGridView dgvMusicas;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtCodigo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgcIId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgcINome;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgcIFone;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgcIDataAniversario;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgcIDataCadastro;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dgcIFuncoes;
 
         #endregion
 
@@ -460,5 +510,18 @@
         private System.Windows.Forms.TextBox txtObservacao;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.ComboBox cmbVozPrincipal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgcIId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgcINome;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dvcVersao;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dvcTom;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dvcVozPrincipal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dvcBpm;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dvcObservacao;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dvcTomOriginal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dvcDataCadastro;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dvcCompasso;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dvcTemVs;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dvcLinkVideo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dvcLinkCifra;
     }
 }

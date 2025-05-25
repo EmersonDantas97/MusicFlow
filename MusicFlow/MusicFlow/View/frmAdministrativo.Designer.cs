@@ -82,6 +82,7 @@
             this.eventoToolStripMenuItem.ShortcutKeyDisplayString = "e";
             this.eventoToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.eventoToolStripMenuItem.Text = "&Evento";
+            this.eventoToolStripMenuItem.Click += new System.EventHandler(this.eventoToolStripMenuItem_Click);
             // 
             // relatóriosToolStripMenuItem
             // 
@@ -94,7 +95,7 @@
             // eventoToolStripMenuItem1
             // 
             this.eventoToolStripMenuItem1.Name = "eventoToolStripMenuItem1";
-            this.eventoToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.eventoToolStripMenuItem1.Size = new System.Drawing.Size(115, 22);
             this.eventoToolStripMenuItem1.Text = "Eventos";
             // 
             // frmAdministrativo

@@ -23,7 +23,7 @@ namespace MusicFlow.Repository
                 List<Musica> listaDeMusicas = new List<Musica>();
 
                 string scriptSql =
-                    "select Id, Nome, Interprete, Versao, DataCadastro, Observacao, BPM, Compasso, Tom, TemVS, TomOriginal, LinkVideo, LinkCifra, Status " +
+                    "select Id, Nome, VozPrincipal, Versao, DataCadastro, Observacao, BPM, Compasso, Tom, TemVS, TomOriginal, LinkVideo, LinkCifra, Status " +
                     "from musica " +
                     "where Status = 0;";
 
@@ -40,24 +40,24 @@ namespace MusicFlow.Repository
 
                         while (dr.Read())
                         {
-                            Musica integrante = new Musica();
+                            Musica musica = new Musica();
 
-                            integrante.Id = (int)dr["Id"];
-                            integrante.Nome = dr["Nome"].ToString();
-                            integrante.DataCadastro = (DateTime)dr["DataCadastro"];
-                            integrante.Status = (Status)Convert.ToInt32(dr["Status"]);
-                            integrante.VozPrincipal = (int)dr["VozPrincipal"];
-                            integrante.Bpm = (int)dr["Bpm"];
-                            integrante.Versao = dr["Versao"].ToString();
-                            integrante.Compasso = dr["Compasso"].ToString();
-                            integrante.Tom = dr["Tom"].ToString();
-                            integrante.LinkVideo = dr["LinkVideo"].ToString();
-                            integrante.LinkCifra = dr["LinkCifra"].ToString();
-                            integrante.Observacao = dr["Observacao"].ToString();
-                            integrante.TomOriginal = (TomOriginal)dr["LinkCifra"];
-                            integrante.TemVs = (TemVs)dr["TemVs"];
+                            musica.Id = (int)dr["Id"];
+                            musica.Nome = dr["Nome"].ToString();
+                            musica.DataCadastro = (DateTime)dr["DataCadastro"];
+                            musica.Status = (Status)Convert.ToInt32(dr["Status"]);
+                            musica.VozPrincipal = (int)dr["VozPrincipal"];
+                            musica.Bpm = (int)dr["Bpm"];
+                            musica.Versao = dr["Versao"].ToString();
+                            musica.Compasso = dr["Compasso"].ToString();
+                            musica.Tom = dr["Tom"].ToString();
+                            musica.LinkVideo = dr["LinkVideo"].ToString();
+                            musica.LinkCifra = dr["LinkCifra"].ToString();
+                            musica.Observacao = dr["Observacao"].ToString();
+                            musica.TomOriginal = (TomOriginal)Convert.ToInt32(dr["TomOriginal"]);
+                            musica.TemVs = (TemVs)Convert.ToInt32(dr["TemVs"]);
 
-                            listaDeMusicas.Add(integrante);
+                            listaDeMusicas.Add(musica);
                         }
                     }
                 }

@@ -1,13 +1,6 @@
 ﻿using MusicFlow.Controller;
 using MusicFlow.Models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MusicFlow.View
@@ -21,6 +14,32 @@ namespace MusicFlow.View
         }
 
         #region "Métodos para abstração"
+        private void atualizaGridMusicas()
+        {
+            var listaDeMusicas = musicaController.BuscarMusicasAtivas();
+
+            dgvMusicas.Rows.Clear();
+
+            foreach (var musica in listaDeMusicas)
+            {
+                int indiceDaLinha = dgvMusicas.Rows.Add();
+
+                dgvMusicas.Rows[indiceDaLinha].Cells[0].Value = musica.Id;
+                dgvMusicas.Rows[indiceDaLinha].Cells[1].Value = musica.Nome;
+                dgvMusicas.Rows[indiceDaLinha].Cells[2].Value = musica.Versao;
+                dgvMusicas.Rows[indiceDaLinha].Cells[3].Value = musica.Tom;
+                dgvMusicas.Rows[indiceDaLinha].Cells[4].Value = musica.VozPrincipal;
+                dgvMusicas.Rows[indiceDaLinha].Cells[5].Value = musica.Bpm;
+                dgvMusicas.Rows[indiceDaLinha].Cells[6].Value = musica.Observacao;
+                dgvMusicas.Rows[indiceDaLinha].Cells[7].Value = musica.TomOriginal;
+                dgvMusicas.Rows[indiceDaLinha].Cells[8].Value = musica.DataCadastro;
+                dgvMusicas.Rows[indiceDaLinha].Cells[9].Value = musica.Compasso;
+                dgvMusicas.Rows[indiceDaLinha].Cells[10].Value = musica.TemVs;
+                dgvMusicas.Rows[indiceDaLinha].Cells[11].Value = musica.LinkVideo;
+                dgvMusicas.Rows[indiceDaLinha].Cells[12].Value = musica.LinkCifra;
+            }
+        }
+
         private void preparaTela()
         {
             txtCodigo.Clear();
@@ -35,6 +54,8 @@ namespace MusicFlow.View
             cmbTemVs.SelectedIndex = 0;
             cmbTomOriginal.SelectedIndex = 0;
             cmbVozPrincipal.SelectedIndex = 0;
+
+            atualizaGridMusicas();
         } 
         #endregion
 
@@ -89,6 +110,11 @@ namespace MusicFlow.View
                     this.Close();
                     break;
             }
+        }
+
+        private void frmCadastroMusica_Load(object sender, EventArgs e)
+        {
+            atualizaGridMusicas();
         }
     }
 }
