@@ -85,6 +85,7 @@
             this.btnSalvar.TabIndex = 4;
             this.btnSalvar.Text = "F1 - Salvar ";
             this.btnSalvar.UseVisualStyleBackColor = true;
+            this.btnSalvar.Click += new System.EventHandler(this.btnSalvar_Click);
             // 
             // btnExcluir
             // 

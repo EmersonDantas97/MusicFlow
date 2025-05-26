@@ -114,9 +114,9 @@ namespace MusicFlow.View
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            if (ListaDeFuncoesDoMusico().Count > 1 &&
-                txtNome.TextLength > 4 &&
-                txtWhats.TextLength > 10)
+            if (ListaDeFuncoesDoMusico().Count > 0 &&
+                txtNome.TextLength >= 3 &&
+                txtWhats.TextLength > 9)
             {
                 CadastraNovoMusico();
                 MessageBox.Show("Integrante cadastrado com SUCESSO!", "Cadastro de integrante", MessageBoxButtons.OK, MessageBoxIcon.Information);

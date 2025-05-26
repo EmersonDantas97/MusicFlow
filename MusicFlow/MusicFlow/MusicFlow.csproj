@@ -48,13 +48,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\EventosController.cs" />
     <Compile Include="Controller\FuncoesController.cs" />
     <Compile Include="Controller\IntegrantesBandaController.cs" />
     <Compile Include="Controller\MusicasController.cs" />
+    <Compile Include="Models\Evento.cs" />
     <Compile Include="Models\Funcao.cs" />
     <Compile Include="Interfaces\ICadastro.cs" />
     <Compile Include="Models\IntegranteBanda.cs" />
     <Compile Include="Models\Musica.cs" />
+    <Compile Include="Repository\EventoRepository.cs" />
     <Compile Include="Repository\FuncaoRepository.cs" />
     <Compile Include="Repository\IntegranteBandaRepository.cs" />
     <Compile Include="Repository\MusicaRepository.cs" />

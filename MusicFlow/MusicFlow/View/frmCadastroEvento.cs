@@ -1,4 +1,5 @@
 ﻿using MusicFlow.Controller;
+using MusicFlow.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -43,6 +44,19 @@ namespace MusicFlow.View
         private void frmCadastroEvento_Load(object sender, EventArgs e)
         {
             atualizaGridFuncoes();
+        }
+
+        private void btnSalvar_Click(object sender, EventArgs e)
+        {
+            Evento novoEvento = new Evento();
+
+            novoEvento.Nome = txtTitulo.Text.Trim();
+            novoEvento.DataEvento = Convert.ToDateTime(dtpDataEvento.Text);
+            novoEvento.Observacao = txtObservacao.Text.Trim();
+            novoEvento.Banda = carregaBandaSelecionada(); //TODO: Criar método depois.
+            novoEvento.SetList = carregaSetlistSelecionado(); //TODO: Criar método depois.
+
+
         }
     }
 }

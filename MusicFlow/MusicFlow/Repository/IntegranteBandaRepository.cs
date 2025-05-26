@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Configuration;
 using MusicFlow.Models;
+using System.Data;
 
 namespace MusicFlow.Repository
 {
@@ -97,6 +98,8 @@ namespace MusicFlow.Repository
         {
             int? idGerado = null;
 
+            integranteBanda.DataCadastro = DateTime.Now;
+
             string scriptSql =
                 "INSERT INTO IntegranteBanda (Nome, DataAniversario, DataCadastro, Fone, Status) " +
                 "VALUES (@Nome, @DataAniversario, @DataCadastro, @Fone, @Status); " +
@@ -108,11 +111,11 @@ namespace MusicFlow.Repository
 
                 using (SqlCommand cmd = new SqlCommand(scriptSql, conn))
                 {
-                    cmd.Parameters.AddWithValue("@Nome", integranteBanda.Nome);
-                    cmd.Parameters.AddWithValue("@DataCadastro", integranteBanda.DataCadastro);
-                    cmd.Parameters.AddWithValue("@Status", integranteBanda.Status);
-                    cmd.Parameters.AddWithValue("@DataAniversario", integranteBanda.DataAniversario);
-                    cmd.Parameters.AddWithValue("@Fone", integranteBanda.Fone);
+                    cmd.Parameters.Add(new SqlParameter("@Nome", SqlDbType.VarChar)).Value = integranteBanda.Nome;
+                    cmd.Parameters.Add(new SqlParameter("@DataCadastro", SqlDbType.DateTime)).Value =  integranteBanda.DataCadastro;
+                    cmd.Parameters.Add(new SqlParameter("@Status", SqlDbType.Int)).Value =  integranteBanda.Status;
+                    cmd.Parameters.Add(new SqlParameter("@DataAniversario", SqlDbType.DateTime)).Value = integranteBanda.DataAniversario;
+                    cmd.Parameters.Add(new SqlParameter("@Fone", SqlDbType.VarChar)).Value = integranteBanda.Fone;
 
                     idGerado = Convert.ToInt32(cmd.ExecuteScalar());
                 }
