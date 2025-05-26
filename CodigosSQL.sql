@@ -78,6 +78,8 @@ create table MusicoFuncao
 
 /*Drop Table MusicoFuncao;*/
 
+use MusicFlow;
+
 create table EventoSetlist 
 (
 	Id int identity(1,1),

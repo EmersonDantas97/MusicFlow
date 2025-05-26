@@ -3,16 +3,24 @@
   "WorkspaceRootPath": "D:\\EMERSON\\Curso JN Moura\\MusicFlow\\MusicFlow\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B188836D-A731-4DAD-A42B-1163F2C04B99}|MusicFlow\\MusicFlow.csproj|d:\\emerson\\curso jn moura\\musicflow\\musicflow\\musicflow\\controller\\eventoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B188836D-A731-4DAD-A42B-1163F2C04B99}|MusicFlow\\MusicFlow.csproj|solutionrelative:musicflow\\controller\\eventoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B188836D-A731-4DAD-A42B-1163F2C04B99}|MusicFlow\\MusicFlow.csproj|d:\\emerson\\curso jn moura\\musicflow\\musicflow\\musicflow\\repository\\eventorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B188836D-A731-4DAD-A42B-1163F2C04B99}|MusicFlow\\MusicFlow.csproj|D:\\EMERSON\\Curso JN Moura\\MusicFlow\\MusicFlow\\musicflow\\repository\\eventorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B188836D-A731-4DAD-A42B-1163F2C04B99}|MusicFlow\\MusicFlow.csproj|solutionrelative:musicflow\\repository\\eventorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B188836D-A731-4DAD-A42B-1163F2C04B99}|MusicFlow\\MusicFlow.csproj|d:\\emerson\\curso jn moura\\musicflow\\musicflow\\musicflow\\view\\frmcadastroevento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{B188836D-A731-4DAD-A42B-1163F2C04B99}|MusicFlow\\MusicFlow.csproj|solutionrelative:musicflow\\view\\frmcadastroevento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{B188836D-A731-4DAD-A42B-1163F2C04B99}|MusicFlow\\MusicFlow.csproj|d:\\emerson\\curso jn moura\\musicflow\\musicflow\\musicflow\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{B188836D-A731-4DAD-A42B-1163F2C04B99}|MusicFlow\\MusicFlow.csproj|solutionrelative:musicflow\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B188836D-A731-4DAD-A42B-1163F2C04B99}|MusicFlow\\MusicFlow.csproj|d:\\emerson\\curso jn moura\\musicflow\\musicflow\\musicflow\\repository\\integrantebandarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B188836D-A731-4DAD-A42B-1163F2C04B99}|MusicFlow\\MusicFlow.csproj|solutionrelative:musicflow\\repository\\integrantebandarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B188836D-A731-4DAD-A42B-1163F2C04B99}|MusicFlow\\MusicFlow.csproj|d:\\emerson\\curso jn moura\\musicflow\\musicflow\\musicflow\\models\\evento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B188836D-A731-4DAD-A42B-1163F2C04B99}|MusicFlow\\MusicFlow.csproj|solutionrelative:musicflow\\models\\evento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B188836D-A731-4DAD-A42B-1163F2C04B99}|MusicFlow\\MusicFlow.csproj|D:\\EMERSON\\Curso JN Moura\\MusicFlow\\MusicFlow\\musicflow\\controller\\eventoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B188836D-A731-4DAD-A42B-1163F2C04B99}|MusicFlow\\MusicFlow.csproj|solutionrelative:musicflow\\controller\\eventoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,30 +30,56 @@
       "DocumentGroups": [
         {
           "DockedWidth": 84,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Evento.cs",
+              "DocumentMoniker": "D:\\EMERSON\\Curso JN Moura\\MusicFlow\\MusicFlow\\MusicFlow\\Models\\Evento.cs",
+              "RelativeDocumentMoniker": "MusicFlow\\Models\\Evento.cs",
+              "ToolTip": "D:\\EMERSON\\Curso JN Moura\\MusicFlow\\MusicFlow\\MusicFlow\\Models\\Evento.cs",
+              "RelativeToolTip": "MusicFlow\\Models\\Evento.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAxwAsAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-26T19:15:30.27Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "App.config",
+              "DocumentMoniker": "D:\\EMERSON\\Curso JN Moura\\MusicFlow\\MusicFlow\\MusicFlow\\App.config",
+              "RelativeDocumentMoniker": "MusicFlow\\App.config",
+              "ToolTip": "D:\\EMERSON\\Curso JN Moura\\MusicFlow\\MusicFlow\\MusicFlow\\App.config",
+              "RelativeToolTip": "MusicFlow\\App.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-05-26T19:08:08.888Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "EventoRepository.cs",
               "DocumentMoniker": "D:\\EMERSON\\Curso JN Moura\\MusicFlow\\MusicFlow\\MusicFlow\\Repository\\EventoRepository.cs",
               "RelativeDocumentMoniker": "MusicFlow\\Repository\\EventoRepository.cs",
               "ToolTip": "D:\\EMERSON\\Curso JN Moura\\MusicFlow\\MusicFlow\\MusicFlow\\Repository\\EventoRepository.cs",
               "RelativeToolTip": "MusicFlow\\Repository\\EventoRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAAA4AAAAAAAAAAAA1wD8AAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-26T18:12:29.257Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "EventosController.cs",
               "DocumentMoniker": "D:\\EMERSON\\Curso JN Moura\\MusicFlow\\MusicFlow\\MusicFlow\\Controller\\EventosController.cs",
               "RelativeDocumentMoniker": "MusicFlow\\Controller\\EventosController.cs",
               "ToolTip": "D:\\EMERSON\\Curso JN Moura\\MusicFlow\\MusicFlow\\MusicFlow\\Controller\\EventosController.cs",
               "RelativeToolTip": "MusicFlow\\Controller\\EventosController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAoAAAAAAAAAAIA8wCEAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-26T18:10:18.025Z",
               "EditorCaption": ""
@@ -68,10 +102,10 @@
       "Orientation": 0,
       "VerticalTabListWidth": 256,
       "FloatingWindowState": {
-        "Id": "86f8e4ce-ba0d-4a0a-a391-6cb0c300d727",
+        "Id": "cccc62c9-1e76-4d66-9be7-33fd06e5a1b0",
         "Display": 0,
-        "X": 336,
-        "Y": 122,
+        "X": 498,
+        "Y": 209,
         "Width": 1005,
         "Height": 464,
         "WindowState": 2
@@ -84,14 +118,15 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "frmCadastroEvento.cs [Design]",
-              "DocumentMoniker": "D:\\EMERSON\\Curso JN Moura\\MusicFlow\\MusicFlow\\MusicFlow\\View\\frmCadastroEvento.cs",
-              "RelativeDocumentMoniker": "MusicFlow\\View\\frmCadastroEvento.cs",
-              "ToolTip": "D:\\EMERSON\\Curso JN Moura\\MusicFlow\\MusicFlow\\MusicFlow\\View\\frmCadastroEvento.cs [Design]",
-              "RelativeToolTip": "MusicFlow\\View\\frmCadastroEvento.cs [Design]",
+              "Title": "IntegranteBandaRepository.cs",
+              "DocumentMoniker": "D:\\EMERSON\\Curso JN Moura\\MusicFlow\\MusicFlow\\MusicFlow\\Repository\\IntegranteBandaRepository.cs",
+              "RelativeDocumentMoniker": "MusicFlow\\Repository\\IntegranteBandaRepository.cs",
+              "ToolTip": "D:\\EMERSON\\Curso JN Moura\\MusicFlow\\MusicFlow\\MusicFlow\\Repository\\IntegranteBandaRepository.cs",
+              "RelativeToolTip": "MusicFlow\\Repository\\IntegranteBandaRepository.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-25T02:49:08.706Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-05-26T19:19:32.637Z",
+              "EditorCaption": ""
             }
           ]
         }

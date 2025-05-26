@@ -22,8 +22,14 @@ namespace MusicFlow.Controller
         }
         public Evento AdicionarEvento(Evento evento)
         {
-            if (string.IsNullOrWhiteSpace(evento.Nome))
-                throw new ArgumentException("O nome da não pode ser vazio.");
+            if (string.IsNullOrWhiteSpace(evento.Nome) || evento.Nome.Length < 3)
+                throw new ArgumentException("Campo nome não foi preenchido corretamente! Verifique as informações e tente novamente...");
+
+            if (evento.SetList.Count < 1)
+                throw new ArgumentException("A setlist não foi preenchida corretamente! Verifique as informações e tente novamente...");
+
+            if (evento.Banda.Count < 2)
+                throw new ArgumentException("A banda não foi selecionada corretamente! Verifique as informações e tente novamente...");
 
             return _repository.Adicionar(evento);
         }

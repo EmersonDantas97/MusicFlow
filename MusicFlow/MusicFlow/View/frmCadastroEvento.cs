@@ -15,6 +15,7 @@ namespace MusicFlow.View
     public partial class frmCadastroEvento : Form
     {
         private readonly IntegrantesBandaController integranteBandaController = new IntegrantesBandaController();
+        private readonly EventosController eventosController = new EventosController();
 
         public frmCadastroEvento()
         {
@@ -44,6 +45,7 @@ namespace MusicFlow.View
         private void frmCadastroEvento_Load(object sender, EventArgs e)
         {
             atualizaGridFuncoes();
+
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -53,10 +55,20 @@ namespace MusicFlow.View
             novoEvento.Nome = txtTitulo.Text.Trim();
             novoEvento.DataEvento = Convert.ToDateTime(dtpDataEvento.Text);
             novoEvento.Observacao = txtObservacao.Text.Trim();
-            novoEvento.Banda = carregaBandaSelecionada(); //TODO: Criar método depois.
-            novoEvento.SetList = carregaSetlistSelecionado(); //TODO: Criar método depois.
+            novoEvento.Banda = carregaBandaSelecionada(); 
+            novoEvento.SetList = carregaSetlistSelecionado(); 
 
+            eventosController.AdicionarEvento(novoEvento);
+        }
 
+        private List<Musica> carregaSetlistSelecionado()
+        {
+            throw new NotImplementedException();
+        }
+
+        private List<IntegranteBanda> carregaBandaSelecionada()
+        {
+            throw new NotImplementedException();
         }
     }
 }
