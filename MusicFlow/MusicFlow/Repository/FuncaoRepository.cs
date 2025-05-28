@@ -1,152 +1,138 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Configuration;
 using MusicFlow.Models;
+using System.Threading.Tasks;
 
 namespace MusicFlow.Repository
 {
     internal class FuncaoRepository
     {
-        private readonly string _conexao;
+        private readonly SqlConnection conn;
+        private readonly SqlCommand cmd;
         public FuncaoRepository()
         {
-            _conexao = ConfigurationManager.ConnectionStrings["ConexaoPadrao"].ConnectionString;
+            _logPath = Configurations.Config.GetLogPath();
+
+            conn = new SqlConnection(Configurations.Config.GetConnectionString("ConexaoPadrao"));
+            cmd = new SqlCommand();
+            cmd.Connection = conn;
         }
-        public List<Funcao> ListarTodas()
+        public async Task<List<Funcao>> GetAll()
         {
             List<Funcao> listaDeFuncoes = new List<Funcao>();
 
-            string scriptSql =
-                "SELECT Id, Nome, DataCadastro, Status FROM Funcao WHERE Status = 0;";
-
-            using
-            (SqlConnection conn = new SqlConnection(_conexao))
+            using (conn)
             {
-                conn.Open();
+                await conn.OpenAsync();
 
-                using
-                (SqlCommand cmd = new SqlCommand(scriptSql, conn))
+                using (cmd)
                 {
+                    cmd.CommandText = "SELECT Id, Nome, DataCadastro, Status FROM Funcao WHERE Status = 0;";
 
-                    SqlDataReader dr = cmd.ExecuteReader();
+                    SqlDataReader dr = await cmd.ExecuteReaderAsync();
 
-                    while (dr.Read())
+                    while (await dr.ReadAsync())
                     {
-                        listaDeFuncoes.Add(new Funcao
-                        {
-                            Id = (int)dr["Id"],
-                            Nome = dr["Nome"] as string,
-                            DataCadastro = (DateTime)dr["DataCadastro"],
-                            Status = (Status)Convert.ToInt32(dr["Status"])
-                        });
+                        Models.Funcao funcao = new Models.Funcao();
+
+                        Mapper(dr, funcao);
+
+                        listaDeFuncoes.Add(funcao);
                     }
                 }
             }
-
             return listaDeFuncoes;
         }
-        public Funcao ListarPorId(int id)
+        public async Task<Models.Funcao> GetById(int id)
         {
-            string scriptSql =
-                "SELECT Id, Nome, DataCadastro, Status FROM Funcao WHERE Status = 0 and Id = @Id;";
+            Models.Funcao funcao = new Models.Funcao();
 
-            Funcao funcao = null;
-
-            using
-            (SqlConnection conn = new SqlConnection(_conexao))
+            using (conn)
             {
-                conn.Open();
+                await conn.OpenAsync();
 
-                using
-                (SqlCommand cmd = new SqlCommand(scriptSql, conn))
+                using(cmd)
                 {
+                    cmd.CommandText = "SELECT Id, Nome, DataCadastro, Status FROM Funcao WHERE Status = 0 and Id = @Id;";
+
                     cmd.Parameters.AddWithValue("@Id", id);
 
-                    SqlDataReader dr = cmd.ExecuteReader();
+                    SqlDataReader dr = await cmd.ExecuteReaderAsync();
 
-                    if (dr.Read())
+                    if (await dr.ReadAsync())
                     {
-                        funcao = new Funcao();
-
-                        funcao.Id = (int)dr["Id"];
-                        funcao.Nome = dr["Nome"] as string;
-                        funcao.DataCadastro = (DateTime)dr["DataCadastro"];
-                        funcao.Status = (Status)Convert.ToInt32(dr["Status"]);
+                        Mapper(dr, funcao);
                     }
                 }
             }
 
             return funcao;
         }
-        public Funcao Adicionar(Funcao funcao)
-        {
-            int? idGerado = null;
-
-            string scriptSql =
-                "INSERT INTO Funcao (Nome, DataCadastro, Status) " +
-                "VALUES (@Nome, @DataCadastro, @Status); " +
-                "SELECT SCOPE_IDENTITY();";
-
-            using (SqlConnection conn = new SqlConnection(_conexao))
+        public async Task Add(Models.Funcao funcao)
+        {              
+            using (conn)
             {
-                conn.Open();
+                await conn.OpenAsync();
 
-                using (SqlCommand cmd = new SqlCommand(scriptSql, conn))
+                using (cmd)
                 {
+                    cmd.CommandText = "INSERT INTO Funcao (Nome, DataCadastro, Status) VALUES (@Nome, @DataCadastro, @Status);SELECT SCOPE_IDENTITY();";
+
                     cmd.Parameters.AddWithValue("@Nome", funcao.Nome);
                     cmd.Parameters.AddWithValue("@DataCadastro", funcao.DataCadastro);
                     cmd.Parameters.AddWithValue("@Status", funcao.Status);
 
-                    idGerado = Convert.ToInt32(cmd.ExecuteScalar());
+                    funcao.Id = Convert.ToInt32(await cmd.ExecuteScalarAsync());
                 }
             }
-            return ListarPorId(idGerado ?? 0);
         }
-        public Funcao Excluir(int id)
+        public async Task<bool> Delete(int id)
         {
-            string scriptSql =
-                "UPDATE Funcao SET Status = 1 WHERE Id = @Id;";
+            int linhasAfetadas = 0;
 
-            using (SqlConnection conn = new SqlConnection(_conexao))
+            using (conn)
             {
-                conn.Open();
+                await conn.OpenAsync();
 
-                using (SqlCommand cmd = new SqlCommand(scriptSql, conn))
+                using (cmd)
                 {
+                    cmd.CommandText = "UPDATE Funcao SET Status = 1 WHERE Id = @Id;";
+
                     cmd.Parameters.AddWithValue("@Id", id);
 
-                    cmd.ExecuteNonQuery();
+                    linhasAfetadas = await cmd.ExecuteNonQueryAsync();
                 }
             }
-            return ListarPorId(id);
+            return linhasAfetadas == 1;
         }
-        public Funcao Alterar(int id, Funcao funcao)
+        public async Task<bool> Update(Models.Funcao funcao)
         {
-            Funcao funcaoAlterada = ListarPorId(id);
+            int linhasAfetadas = 0;
 
-            if (funcaoAlterada == null) { return null; }
-
-            string scriptSql =
-                "UPDATE Funcao " +
-                "SET Nome = @Nome, DataCadastro = @DataCadastro " +
-                "WHERE Id = @Id;";
-
-            using (SqlConnection conn = new SqlConnection(_conexao))
+            using (conn)
             {
-                conn.Open();
+                await conn.OpenAsync();
 
-                using (SqlCommand cmd = new SqlCommand(scriptSql, conn))
+                using (cmd)
                 {
+                    cmd.CommandText = "UPDATE Funcao SET Nome = @Nome, DataCadastro = @DataCadastro WHERE Id = @Id;";
+
                     cmd.Parameters.AddWithValue("@Nome", funcao.Nome);
                     cmd.Parameters.AddWithValue("@DataCadastro", funcao.DataCadastro);
-                    cmd.Parameters.AddWithValue("@Id", id);
+                    cmd.Parameters.AddWithValue("@Id", funcao.Id);
 
-                    cmd.ExecuteNonQuery();
+                    linhasAfetadas = await cmd.ExecuteNonQueryAsync();
                 }
             }
-            return ListarPorId(id);
+            return linhasAfetadas == 1;
         }
-
+        private void Mapper(SqlDataReader dr, Models.Funcao funcao)
+        {
+            funcao.Id = (int)dr["Id"];
+            funcao.Nome = dr["Nome"] as string;
+            funcao.DataCadastro = (DateTime)dr["DataCadastro"];
+            funcao.Status = (Status)Convert.ToInt32(dr["Status"]);
+        }
     }
 }

@@ -48,6 +48,19 @@
             this.dgcNome = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgcIdIntegrante = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgcIdFuncao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgcId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgcMNome = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgcVersao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgcTom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgcVozPrincipal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgcBpm = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgcObservacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgcTomOriginal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgcDataCadastro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgcCompasso = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgcTemVs = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgcLinkVideo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgcLinkCifra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMusicas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBanda)).BeginInit();
             this.SuspendLayout();
@@ -115,6 +128,20 @@
             // dgvMusicas
             // 
             this.dgvMusicas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMusicas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgcId,
+            this.dgcMNome,
+            this.dgcVersao,
+            this.dgcTom,
+            this.dgcVozPrincipal,
+            this.dgcBpm,
+            this.dgcObservacao,
+            this.dgcTomOriginal,
+            this.dgcDataCadastro,
+            this.dgcCompasso,
+            this.dgcTemVs,
+            this.dgcLinkVideo,
+            this.dgcLinkCifra});
             this.dgvMusicas.Location = new System.Drawing.Point(202, 51);
             this.dgvMusicas.Name = "dgvMusicas";
             this.dgvMusicas.RowHeadersVisible = false;
@@ -223,6 +250,84 @@
             this.dgcIdFuncao.ReadOnly = true;
             this.dgcIdFuncao.Visible = false;
             // 
+            // dgcId
+            // 
+            this.dgcId.HeaderText = "Id";
+            this.dgcId.Name = "dgcId";
+            this.dgcId.ReadOnly = true;
+            // 
+            // dgcMNome
+            // 
+            this.dgcMNome.HeaderText = "Nome";
+            this.dgcMNome.Name = "dgcMNome";
+            this.dgcMNome.ReadOnly = true;
+            // 
+            // dgcVersao
+            // 
+            this.dgcVersao.HeaderText = "Versão";
+            this.dgcVersao.Name = "dgcVersao";
+            this.dgcVersao.ReadOnly = true;
+            // 
+            // dgcTom
+            // 
+            this.dgcTom.HeaderText = "Tom";
+            this.dgcTom.Name = "dgcTom";
+            this.dgcTom.ReadOnly = true;
+            // 
+            // dgcVozPrincipal
+            // 
+            this.dgcVozPrincipal.HeaderText = "Voz Principal";
+            this.dgcVozPrincipal.Name = "dgcVozPrincipal";
+            this.dgcVozPrincipal.ReadOnly = true;
+            // 
+            // dgcBpm
+            // 
+            this.dgcBpm.HeaderText = "Bpm";
+            this.dgcBpm.Name = "dgcBpm";
+            this.dgcBpm.ReadOnly = true;
+            // 
+            // dgcObservacao
+            // 
+            this.dgcObservacao.HeaderText = "Observacao";
+            this.dgcObservacao.Name = "dgcObservacao";
+            this.dgcObservacao.ReadOnly = true;
+            // 
+            // dgcTomOriginal
+            // 
+            this.dgcTomOriginal.HeaderText = "Tom Original";
+            this.dgcTomOriginal.Name = "dgcTomOriginal";
+            this.dgcTomOriginal.ReadOnly = true;
+            // 
+            // dgcDataCadastro
+            // 
+            this.dgcDataCadastro.HeaderText = "Data Cadastro";
+            this.dgcDataCadastro.Name = "dgcDataCadastro";
+            this.dgcDataCadastro.ReadOnly = true;
+            // 
+            // dgcCompasso
+            // 
+            this.dgcCompasso.HeaderText = "Compasso";
+            this.dgcCompasso.Name = "dgcCompasso";
+            this.dgcCompasso.ReadOnly = true;
+            // 
+            // dgcTemVs
+            // 
+            this.dgcTemVs.HeaderText = "Tem Vs";
+            this.dgcTemVs.Name = "dgcTemVs";
+            this.dgcTemVs.ReadOnly = true;
+            // 
+            // dgcLinkVideo
+            // 
+            this.dgcLinkVideo.HeaderText = "Link Video";
+            this.dgcLinkVideo.Name = "dgcLinkVideo";
+            this.dgcLinkVideo.ReadOnly = true;
+            // 
+            // dgcLinkCifra
+            // 
+            this.dgcLinkCifra.HeaderText = "Link Cifra";
+            this.dgcLinkCifra.Name = "dgcLinkCifra";
+            this.dgcLinkCifra.ReadOnly = true;
+            // 
             // frmCadastroEvento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -279,5 +384,18 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgcNome;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgcIdIntegrante;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgcIdFuncao;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgcId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgcMNome;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgcVersao;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgcTom;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgcVozPrincipal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgcBpm;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgcObservacao;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgcTomOriginal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgcDataCadastro;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgcCompasso;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgcTemVs;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgcLinkVideo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgcLinkCifra;
     }
 }

@@ -66,12 +66,12 @@ create table Funcao
 
 -- Tabelas de Relacionamento
 
-create table MusicoFuncao 
+create table IntegranteFuncao 
 (
 	Id int identity(1,1),
 	IdFuncao int not null,
 	IdMusico int not null,
-	constraint pk_MusicoFuncao primary key (Id),
+	constraint pk_IntegranteFuncao primary key (Id),
 	Foreign key (IdFuncao) references Funcao(Id),
 	Foreign key (IdMusico) references IntegranteBanda(Id)
 );
@@ -96,10 +96,11 @@ create table EventoBanda
 (
 	Id int identity(1,1),
 	IdEvento int not null,
-	IdMusico int not null,
+	IdMusicoFuncao int not null,
 	constraint pk_EventoBanda primary key (Id),
 	Foreign key (IdEvento) references Evento(Id),
-	Foreign key (IdMusico) references IntegranteBanda(Id)
+	Foreign key (IdMusicoFuncao) references IntegranteFuncao(Id)
 );
 
+Select * from EventoBanda;
 /*Drop Table EventoBanda;*/

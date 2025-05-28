@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configurations\Config.cs" />
     <Compile Include="Controller\EventosController.cs" />
     <Compile Include="Controller\FuncoesController.cs" />
     <Compile Include="Controller\IntegrantesBandaController.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="Repository\FuncaoRepository.cs" />
     <Compile Include="Repository\IntegranteBandaRepository.cs" />
     <Compile Include="Repository\MusicaRepository.cs" />
+    <Compile Include="Utils\Logger.cs" />
     <Compile Include="View\frmAdministrativo.cs">
       <SubType>Form</SubType>
     </Compile>

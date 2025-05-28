@@ -21,7 +21,7 @@ namespace MusicFlow.Repository
         private void registraSetlist(int idEvento, List<Musica> setList)
         {
             string scriptSql =
-                "Insert into EventoSetlist (IdEvento, IdMusica) Values (@IdEvento, @IdMusica);Select scope_identity();"
+                "Insert into EventoSetlist (IdEvento, IdMusica) Values (@IdEvento, @IdMusica);Select scope_identity();";
 
             foreach (var musica in setList)
             {

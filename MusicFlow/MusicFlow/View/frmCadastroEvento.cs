@@ -1,5 +1,6 @@
 ﻿using MusicFlow.Controller;
 using MusicFlow.Models;
+using MusicFlow.Repository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,12 +17,38 @@ namespace MusicFlow.View
     {
         private readonly IntegrantesBandaController integranteBandaController = new IntegrantesBandaController();
         private readonly EventosController eventosController = new EventosController();
+        private readonly MusicasController musicaController = new MusicasController();
 
         public frmCadastroEvento()
         {
             InitializeComponent();
         }
 
+        private void atualizaGridMusicas()
+        {
+            var listaDeMusicas = musicaController.BuscarMusicasAtivas();
+
+            dgvMusicas.Rows.Clear();
+
+            foreach (var musica in listaDeMusicas)
+            {
+                int indiceDaLinha = dgvMusicas.Rows.Add();
+
+                dgvMusicas.Rows[indiceDaLinha].Cells[0].Value = musica.Id;
+                dgvMusicas.Rows[indiceDaLinha].Cells[1].Value = musica.Nome;
+                dgvMusicas.Rows[indiceDaLinha].Cells[2].Value = musica.Versao;
+                dgvMusicas.Rows[indiceDaLinha].Cells[3].Value = musica.Tom;
+                dgvMusicas.Rows[indiceDaLinha].Cells[4].Value = musica.VozPrincipal;
+                dgvMusicas.Rows[indiceDaLinha].Cells[5].Value = musica.Bpm;
+                dgvMusicas.Rows[indiceDaLinha].Cells[6].Value = musica.Observacao;
+                dgvMusicas.Rows[indiceDaLinha].Cells[7].Value = musica.TomOriginal;
+                dgvMusicas.Rows[indiceDaLinha].Cells[8].Value = musica.DataCadastro;
+                dgvMusicas.Rows[indiceDaLinha].Cells[9].Value = musica.Compasso;
+                dgvMusicas.Rows[indiceDaLinha].Cells[10].Value = musica.TemVs;
+                dgvMusicas.Rows[indiceDaLinha].Cells[11].Value = musica.LinkVideo;
+                dgvMusicas.Rows[indiceDaLinha].Cells[12].Value = musica.LinkCifra;
+            }
+        }
         private void atualizaGridFuncoes()
         {
             var funcoesIntegrantes = integranteBandaController.BuscarIntegrantesAtivos();
@@ -45,7 +72,7 @@ namespace MusicFlow.View
         private void frmCadastroEvento_Load(object sender, EventArgs e)
         {
             atualizaGridFuncoes();
-
+            atualizaGridMusicas();
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
