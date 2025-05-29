@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using MusicFlow.Models;
 using System.Threading.Tasks;
 
 namespace MusicFlow.Repository
@@ -10,17 +9,15 @@ namespace MusicFlow.Repository
     {
         private readonly SqlConnection conn;
         private readonly SqlCommand cmd;
-        public FuncaoRepository()
+        public FuncaoRepository(string connectionString)
         {
-            _logPath = Configurations.Config.GetLogPath();
-
-            conn = new SqlConnection(Configurations.Config.GetConnectionString("ConexaoPadrao"));
+            conn = new SqlConnection(Configurations.Config.GetConnectionString(connectionString));
             cmd = new SqlCommand();
             cmd.Connection = conn;
         }
-        public async Task<List<Funcao>> GetAll()
+        public async Task<List<Models.Funcao>> GetAll()
         {
-            List<Funcao> listaDeFuncoes = new List<Funcao>();
+            List<Models.Funcao> listaDeFuncoes = new List<Models.Funcao>();
 
             using (conn)
             {
@@ -79,9 +76,7 @@ namespace MusicFlow.Repository
                 {
                     cmd.CommandText = "INSERT INTO Funcao (Nome, DataCadastro, Status) VALUES (@Nome, @DataCadastro, @Status);SELECT SCOPE_IDENTITY();";
 
-                    cmd.Parameters.AddWithValue("@Nome", funcao.Nome);
-                    cmd.Parameters.AddWithValue("@DataCadastro", funcao.DataCadastro);
-                    cmd.Parameters.AddWithValue("@Status", funcao.Status);
+                    AdicionaParametrosSqlScript(cmd, funcao);
 
                     funcao.Id = Convert.ToInt32(await cmd.ExecuteScalarAsync());
                 }
@@ -118,21 +113,28 @@ namespace MusicFlow.Repository
                 {
                     cmd.CommandText = "UPDATE Funcao SET Nome = @Nome, DataCadastro = @DataCadastro WHERE Id = @Id;";
 
-                    cmd.Parameters.AddWithValue("@Nome", funcao.Nome);
-                    cmd.Parameters.AddWithValue("@DataCadastro", funcao.DataCadastro);
-                    cmd.Parameters.AddWithValue("@Id", funcao.Id);
+                    AdicionaParametrosSqlScript(cmd, funcao);
 
                     linhasAfetadas = await cmd.ExecuteNonQueryAsync();
                 }
             }
             return linhasAfetadas == 1;
         }
+        private void AdicionaParametrosSqlScript(SqlCommand cmd, Models.Funcao funcao)
+        {
+            if(funcao.Id != null)
+                cmd.Parameters.AddWithValue("@Id", funcao.Id);
+
+            cmd.Parameters.AddWithValue("@Nome", funcao.Nome);
+            cmd.Parameters.AddWithValue("@DataCadastro", funcao.DataCadastro);
+            cmd.Parameters.AddWithValue("@Status", funcao.Status);
+        }
         private void Mapper(SqlDataReader dr, Models.Funcao funcao)
         {
             funcao.Id = (int)dr["Id"];
             funcao.Nome = dr["Nome"] as string;
             funcao.DataCadastro = (DateTime)dr["DataCadastro"];
-            funcao.Status = (Status)Convert.ToInt32(dr["Status"]);
+            funcao.Status = (Models.Status)Convert.ToInt32(dr["Status"]);
         }
     }
 }

@@ -2,37 +2,42 @@
 using System;
 using System.Collections.Generic;
 using MusicFlow.Repository;
+using System.Threading.Tasks;
 
 namespace MusicFlow.Controller
 {
     internal class FuncoesController
     {
         private readonly FuncaoRepository _repository;
+        private readonly string _logPath;
         public FuncoesController()
         {
-            _repository = new FuncaoRepository();
+            _repository = new FuncaoRepository(Configurations.Config.GetConnectionString("ConexaoPadrao"));
+            _logPath = Configurations.Config.GetLogPath();
         }
-        public List<Funcao> BuscarFuncoesAtivas()
+        public async Task<List<Funcao>> Get()
         {
-            return _repository.ListarTodas();
+            try
+            {
+                return await _repository.GetAll();
+            }
+            catch (Exception ex)
+            {
+                await Utils.Logger.RegistraLog(_logPath, ex);
+
+                throw;
+            }
         }
-        public Funcao BuscarFuncao(int id)
+        public async Task<Funcao> BuscarFuncao(int id)
         {
-            return _repository.ListarPorId(id);
+            return await _repository.GetById(id);
         }
-        public Funcao AdicionarFuncao(string nome)
+        public async Task AdicionarFuncao(Models.Funcao funcao)
         {
-            if (string.IsNullOrWhiteSpace(nome))
+            if (string.IsNullOrWhiteSpace(funcao.Nome))
                 throw new ArgumentException("O nome da função não pode ser vazio.");
 
-            var novaFuncao = new Funcao
-            {
-                Nome = nome.Trim(),
-                DataCadastro = DateTime.Now,
-                Status = Status.Ativo // ou Status.0 se estiver usando enum
-            };
-
-            return _repository.Adicionar(novaFuncao);
+            await _repository.Add(funcao);
         }
         public Funcao ExcluirFuncao(int id)
         {

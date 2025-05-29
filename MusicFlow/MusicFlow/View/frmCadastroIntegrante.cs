@@ -1,13 +1,9 @@
 ﻿using Microsoft.VisualBasic;
 using MusicFlow.Controller;
-using MusicFlow.Models;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -15,23 +11,25 @@ namespace MusicFlow.View
 {
     public partial class frmCadastroIntegrante : Form
     {
-        private readonly FuncoesController funcoesController = new FuncoesController();
-        private readonly IntegrantesBandaController integranteBandaController = new IntegrantesBandaController();
+        private readonly FuncoesController funcoesController;
+        private readonly IntegrantesBandaController integranteBandaController;
         public frmCadastroIntegrante()
         {
             InitializeComponent();
+            funcoesController = new FuncoesController();
+            integranteBandaController = new IntegrantesBandaController();
         }
 
         #region Metodos - Abstracao
-        private List<Funcao> ListaDeFuncoesDoMusico()
+        private List<Models.Funcao> ListaDeFuncoesDoMusico()
         {
-            List<Funcao> funcoes = new List<Funcao>();
+            List<Models.Funcao> funcoes = new List<Models.Funcao>();
 
             foreach (DataGridViewRow linha in dgvFuncoes.Rows)
             {
                 if (Convert.ToBoolean(linha.Cells[0].Value) == true)
                 {
-                    funcoes.Add(funcoesController.BuscarFuncao(Convert.ToInt32(linha.Cells[2].Value)));
+                    funcoes.Add(funcoesController.GetById(Convert.ToInt32(linha.Cells[2].Value)));
                 }
             }
 
@@ -39,13 +37,14 @@ namespace MusicFlow.View
         }
         private void CadastraNovoMusico()
         {
-            IntegranteBanda novoIntegrante = integranteBandaController.AdicionarIntegrante(new IntegranteBanda
-            {
-                Nome = txtNome.Text,
-                DataAniversario = Convert.ToDateTime(txtDataNascimento.Text),
-                Fone = txtWhats.Text,
-                Funcoes = ListaDeFuncoesDoMusico()
-            });
+            Models.IntegranteBanda novoIntegrante = new Models.IntegranteBanda();
+
+            novoIntegrante.Nome = txtNome.Text;
+            novoIntegrante.DataAniversario = Convert.ToDateTime(txtDataNascimento.Text);
+            novoIntegrante.Fone = txtWhats.Text;
+            novoIntegrante.Funcoes = ListaDeFuncoesDoMusico();
+
+            integranteBandaController.AdicionarIntegrante(novoIntegrante);
 
             txtCodigo.Text = novoIntegrante.Id.ToString();
         }
@@ -68,7 +67,7 @@ namespace MusicFlow.View
         }
         private void AtualizaGridFuncoes()
         {
-            var listaDeFuncoes = funcoesController.BuscarFuncoesAtivas();
+            var listaDeFuncoes = funcoesController.Get();
 
             dgvFuncoes.Rows.Clear();
 
@@ -81,11 +80,15 @@ namespace MusicFlow.View
                 dgvFuncoes.Rows[indiceDaLinha].Cells[2].Value = funcao.Id;
             }
         }
-        private void CadastraNovaFuncao()
+        private async Task CadastraNovaFuncao()
         {
-            string nomeNovaFuncao = Interaction.InputBox("Digite o nome da nova função", "Cadastro de função");
+            Models.Funcao funcao = new Models.Funcao();
 
-            funcoesController.AdicionarFuncao(nomeNovaFuncao);
+            funcao.Nome = Interaction.InputBox("Digite o nome da nova função", "Cadastro de função");
+            funcao.Status = Models.Status.Ativo;
+            funcao.DataCadastro = DateTime.Now;
+
+            await funcoesController.AdicionarFuncao(funcao);
 
             MessageBox.Show("Função adicionada com SUCESSO!", "Função cadastrada", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -96,7 +99,7 @@ namespace MusicFlow.View
 
             dgvIntegrantes.Rows.Clear();
 
-            foreach (IntegranteBanda integrante in listaDeIntegrantes)
+            foreach (Models.IntegranteBanda integrante in listaDeIntegrantes)
             {
                 int indiceDaLinha = dgvIntegrantes.Rows.Add();
 
@@ -114,19 +117,12 @@ namespace MusicFlow.View
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            if (ListaDeFuncoesDoMusico().Count > 0 &&
-                txtNome.TextLength >= 3 &&
-                txtWhats.TextLength > 9)
-            {
-                CadastraNovoMusico();
-                MessageBox.Show("Integrante cadastrado com SUCESSO!", "Cadastro de integrante", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                PreparaNovoCadastro();
-                AtualizaGridIntegrantes();
-            }
-            else
-            {
-                MessageBox.Show("Não é possível realizar o cadastro, pois não foi selecionada nenhuma função!", "Cadastro de integrante", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+
+            CadastraNovoMusico();
+            MessageBox.Show("Integrante cadastrado com SUCESSO!", "Cadastro de integrante", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            PreparaNovoCadastro();
+            AtualizaGridIntegrantes();
+
         }
         private void frmCadastroIntegrante_Load(object sender, EventArgs e)
         {

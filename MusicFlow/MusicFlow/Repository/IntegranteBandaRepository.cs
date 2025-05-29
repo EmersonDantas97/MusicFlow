@@ -2,59 +2,59 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Configuration;
-using MusicFlow.Models;
 using System.Data;
+using System.Threading.Tasks;
+using MusicFlow.Models;
 
 namespace MusicFlow.Repository
 {
     internal class IntegranteBandaoRepository
     {
-        private readonly string _conexao;
+        private readonly SqlConnection conn;
+        private readonly SqlCommand cmd;
         public IntegranteBandaoRepository()
         {
-            _conexao = ConfigurationManager.ConnectionStrings["ConexaoPadrao"].ConnectionString;
+            conn = new SqlConnection(Configurations.Config.GetConnectionString("ConexaoPadrao"));
+            cmd = new SqlCommand();
+            cmd.Connection = conn;
         }
-        public List<IntegranteBanda> ListarTodos()
+        public async Task<List<Models.IntegranteBanda>> GetAll()
         {
-            List<IntegranteBanda> listaDeIntegrantes = new List<IntegranteBanda>();
+            List<Models.IntegranteBanda> listaDeIntegrantes = new List<Models.IntegranteBanda>();
 
-            string scriptSql =
-                "SELECT Id, Nome, DataAniversario, DataCadastro, Fone, Status " +
-                "FROM IntegranteBanda " +
-                "WHERE Status = 0;";
-
-            using
-            (SqlConnection conn = new SqlConnection(_conexao))
+            using(conn)
             {
-                conn.Open();
+                await conn.OpenAsync();
 
-                using
-                (SqlCommand cmd = new SqlCommand(scriptSql, conn))
+                using(cmd)
                 {
+                    cmd.CommandText = "SELECT Id, Nome, DataAniversario, DataCadastro, Fone, Status FROM IntegranteBanda WHERE Status = 0;";
 
-                    SqlDataReader dr = cmd.ExecuteReader();
+                    SqlDataReader dr = await cmd.ExecuteReaderAsync();
 
-                    while (dr.Read())
+                    while (await dr.ReadAsync())
                     {
-                        IntegranteBanda integrante = new IntegranteBanda();
+                        Models.IntegranteBanda integrante = new Models.IntegranteBanda();
 
-                        integrante.Id = (int)dr["Id"];
-                        integrante.Nome = dr["Nome"] as string;
-                        integrante.DataAniversario = (DateTime)dr["DataAniversario"];
-                        integrante.DataCadastro = (DateTime)dr["DataCadastro"];
-                        integrante.Status = (Status)Convert.ToInt32(dr["Status"]);
-                        integrante.Fone = dr["Fone"] as string;
-                        integrante.Funcoes = carregaListaFuncoes(integrante.Id ?? 0);
+                        Mapper(dr, integrante);
 
                         listaDeIntegrantes.Add(integrante);
                     }
                 }
             }
-
-
             return listaDeIntegrantes;
         }
-        public IntegranteBanda ListarPorId(int id)
+        private void Mapper(SqlDataReader dr, IntegranteBanda integrante)
+        {
+            integrante.Id = (int)dr["Id"];
+            integrante.Nome = dr["Nome"] as string;
+            integrante.DataAniversario = (DateTime)dr["DataAniversario"];
+            integrante.DataCadastro = (DateTime)dr["DataCadastro"];
+            integrante.Status = (Status)Convert.ToInt32(dr["Status"]);
+            integrante.Fone = dr["Fone"] as string;
+            integrante.Funcoes = CarregaListaFuncoes(integrante.Id ?? 0);
+        }
+        public Models.IntegranteBanda ListarPorId(int id)
         {
             string scriptSql =
                 "SELECT Id, Nome, DataAniversario, DataCadastro, Fone, Status " +
@@ -94,7 +94,7 @@ namespace MusicFlow.Repository
 
             return integrante;
         }
-        public IntegranteBanda Adicionar(IntegranteBanda integranteBanda)
+        public Models.IntegranteBanda Adicionar(Models.IntegranteBanda integranteBanda)
         {
             int? idGerado = null;
 
@@ -125,7 +125,7 @@ namespace MusicFlow.Repository
 
             return ListarPorId(idGerado ?? 0);
         }
-        public IntegranteBanda Excluir(int id)
+        public Models.IntegranteBanda Excluir(int id)
         {
             string scriptSql =
                 "UPDATE IntegranteBanda SET Status = 1 WHERE Id = @Id;";
@@ -143,7 +143,7 @@ namespace MusicFlow.Repository
             }
             return ListarPorId(id);
         }
-        public IntegranteBanda Alterar(int id, IntegranteBanda integranteBanda)
+        public Models.IntegranteBanda Alterar(int id, Models.IntegranteBanda integranteBanda)
         {
             IntegranteBanda integranteAlterado = ListarPorId(id);
 
@@ -171,7 +171,7 @@ namespace MusicFlow.Repository
             }
             return ListarPorId(id);
         }
-        private void registraFuncoes(int id, List<Funcao> funcoes)
+        private void RegistraFuncoes(int id, List<Models.Funcao> funcoes)
         {
             string scriptSql =
                 "INSERT INTO IntegranteFuncao (IdIntegrante, IdFuncao) " +
@@ -193,7 +193,7 @@ namespace MusicFlow.Repository
                 }
             }
         }
-        private List<Funcao> carregaListaFuncoes(int id)
+        private List<Models.Funcao> CarregaListaFuncoes(int id)
         {
             List<Funcao> listaDeFuncoes = new List<Funcao>();
 
