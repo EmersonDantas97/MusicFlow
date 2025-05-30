@@ -28,25 +28,24 @@ namespace MusicFlow.Controller
                 throw;
             }
         }
-        public async Task<Funcao> BuscarFuncao(int id)
+        public async Task<Funcao> Get(int id)
         {
             return await _repository.GetById(id);
         }
-        public async Task AdicionarFuncao(Models.Funcao funcao)
+        public async Task Post(Models.Funcao funcao)
         {
             if (string.IsNullOrWhiteSpace(funcao.Nome))
                 throw new ArgumentException("O nome da função não pode ser vazio.");
 
             await _repository.Add(funcao);
         }
-        public Funcao ExcluirFuncao(int id)
+        public async Task Delete(int id)
         {
-            return _repository.Excluir(id);
+            await _repository.Delete(id);
         }
-        public Funcao EditarFuncao(int id, Funcao funcao)
+        public async Task Put(int id, Funcao funcao)
         {
-            return _repository.Alterar(id, funcao);
+            await _repository.Update(funcao);
         }
-
     }
 }

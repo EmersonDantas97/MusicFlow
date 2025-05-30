@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using MusicFlow.Models;
 using MusicFlow.Repository;
@@ -13,28 +14,28 @@ namespace MusicFlow.Controller
         {
             _repository = new IntegranteBandaoRepository();
         }
-        public List<IntegranteBanda> BuscarIntegrantesAtivos()
+        public async Task<List<IntegranteBanda>> BuscarIntegrantesAtivos()
         {
-            return _repository.ListarTodos();
+            return await _repository.GetAll();
         }
-        public IntegranteBanda BuscarIntegrante(int id)
+        public async Task<IntegranteBanda> BuscarIntegrante(int id)
         {
-            return _repository.ListarPorId(id);
+            return await _repository.Get(id);
         }
-        public IntegranteBanda AdicionarIntegrante(IntegranteBanda integranteBanda)
+        public async Task AdicionarIntegrante(IntegranteBanda integranteBanda)
         {
             if (integranteBanda.Funcoes == null || integranteBanda.Funcoes.Count == 0)
                 throw new Exception("É necessário informar ao menus uma função para o integrante.");
 
-            return _repository.Adicionar(integranteBanda);
+            await _repository.Add(integranteBanda);
         }
-        public IntegranteBanda ExcluirIntegrante(int id)
+        public async Task ExcluirIntegrante(int id)
         {
-            return _repository.Excluir(id);
+            await _repository.Delete(id);
         }
-        public IntegranteBanda EditarIntegrante(int id, IntegranteBanda integranteBanda)
+        public async Task EditarIntegrante(int id, IntegranteBanda integranteBanda)
         {
-            return _repository.Alterar(id, integranteBanda);
+            await _repository.Update(integranteBanda);
         }
 
     }

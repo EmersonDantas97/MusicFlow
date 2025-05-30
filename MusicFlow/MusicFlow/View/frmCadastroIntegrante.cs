@@ -1,10 +1,5 @@
-﻿using Microsoft.VisualBasic;
-using MusicFlow.Controller;
+﻿using MusicFlow.Controller;
 using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MusicFlow.View
@@ -20,116 +15,31 @@ namespace MusicFlow.View
             integranteBandaController = new IntegrantesBandaController();
         }
 
-        #region Metodos - Abstracao
-        private List<Models.Funcao> ListaDeFuncoesDoMusico()
+        private async void btnSalvar_Click(object sender, EventArgs e)
         {
-            List<Models.Funcao> funcoes = new List<Models.Funcao>();
-
-            foreach (DataGridViewRow linha in dgvFuncoes.Rows)
-            {
-                if (Convert.ToBoolean(linha.Cells[0].Value) == true)
-                {
-                    funcoes.Add(funcoesController.GetById(Convert.ToInt32(linha.Cells[2].Value)));
-                }
-            }
-
-            return funcoes;
+            Models.IntegranteBanda i = new Models.IntegranteBanda();
+            
+            i.Nome = txtNome.Text;
+            i.DataCadastro = DateTime.Now;
+            i.DataAniversario = Convert.ToDateTime(txtDataNascimento.Text);
+            i.Fone = txtWhats.Text;
+            i.Status = Models.Status.Ativo;
+            
+            await integranteBandaController.AdicionarIntegrante(i);
         }
-        private void CadastraNovoMusico()
+        private async void frmCadastroIntegrante_Load(object sender, EventArgs e)
         {
-            Models.IntegranteBanda novoIntegrante = new Models.IntegranteBanda();
-
-            novoIntegrante.Nome = txtNome.Text;
-            novoIntegrante.DataAniversario = Convert.ToDateTime(txtDataNascimento.Text);
-            novoIntegrante.Fone = txtWhats.Text;
-            novoIntegrante.Funcoes = ListaDeFuncoesDoMusico();
-
-            integranteBandaController.AdicionarIntegrante(novoIntegrante);
-
-            txtCodigo.Text = novoIntegrante.Id.ToString();
+            CarregaGridFuncoes();
         }
-        private void PreparaNovoCadastro()
+
+        private async void CarregaGridFuncoes()
         {
-            txtCodigo.Clear();
-            txtNome.Focus();
+            await funcoesController.Get();
 
-            txtDataNascimento.Clear();
-            txtNome.Clear();
-            txtPesquisar.Clear();
-            txtWhats.Clear();
-
-            LimpaSelecoesGridFuncoes();
+            throw new NotImplementedException();
         }
-        private void LimpaSelecoesGridFuncoes()
-        {
-            foreach (DataGridViewRow linha in dgvFuncoes.Rows)
-                linha.Cells[0].Value = false;
-        }
-        private void AtualizaGridFuncoes()
-        {
-            var listaDeFuncoes = funcoesController.Get();
 
-            dgvFuncoes.Rows.Clear();
-
-            foreach (var funcao in listaDeFuncoes)
-            {
-                int indiceDaLinha = dgvFuncoes.Rows.Add();
-
-                dgvFuncoes.Rows[indiceDaLinha].Cells[0].Value = false;
-                dgvFuncoes.Rows[indiceDaLinha].Cells[1].Value = funcao.Nome;
-                dgvFuncoes.Rows[indiceDaLinha].Cells[2].Value = funcao.Id;
-            }
-        }
-        private async Task CadastraNovaFuncao()
-        {
-            Models.Funcao funcao = new Models.Funcao();
-
-            funcao.Nome = Interaction.InputBox("Digite o nome da nova função", "Cadastro de função");
-            funcao.Status = Models.Status.Ativo;
-            funcao.DataCadastro = DateTime.Now;
-
-            await funcoesController.AdicionarFuncao(funcao);
-
-            MessageBox.Show("Função adicionada com SUCESSO!", "Função cadastrada", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-        }
-        private void AtualizaGridIntegrantes()
-        {
-            var listaDeIntegrantes = integranteBandaController.BuscarIntegrantesAtivos();
-
-            dgvIntegrantes.Rows.Clear();
-
-            foreach (Models.IntegranteBanda integrante in listaDeIntegrantes)
-            {
-                int indiceDaLinha = dgvIntegrantes.Rows.Add();
-
-                string nomesFuncoes = string.Join(", ", integrante.Funcoes.Select(f => f.Nome));
-
-                dgvIntegrantes.Rows[indiceDaLinha].Cells[0].Value = integrante.Id;
-                dgvIntegrantes.Rows[indiceDaLinha].Cells[1].Value = integrante.Nome;
-                dgvIntegrantes.Rows[indiceDaLinha].Cells[2].Value = integrante.Fone;
-                dgvIntegrantes.Rows[indiceDaLinha].Cells[3].Value = integrante.DataAniversario.ToString("d");
-                dgvIntegrantes.Rows[indiceDaLinha].Cells[4].Value = integrante.DataCadastro.ToString("g");
-                dgvIntegrantes.Rows[indiceDaLinha].Cells[5].Value = nomesFuncoes;
-            }
-        } 
-        #endregion
-
-        private void btnSalvar_Click(object sender, EventArgs e)
-        {
-
-            CadastraNovoMusico();
-            MessageBox.Show("Integrante cadastrado com SUCESSO!", "Cadastro de integrante", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            PreparaNovoCadastro();
-            AtualizaGridIntegrantes();
-
-        }
-        private void frmCadastroIntegrante_Load(object sender, EventArgs e)
-        {
-            AtualizaGridFuncoes();
-            AtualizaGridIntegrantes();
-        }
-        private void frmCadastroIntegrante_KeyDown(object sender, KeyEventArgs e)
+        private async void frmCadastroIntegrante_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
             {
@@ -150,8 +60,6 @@ namespace MusicFlow.View
                     break;
 
                 case Keys.F4:
-                    CadastraNovaFuncao();
-                    AtualizaGridFuncoes();
                     break;
             }
         }

@@ -49,9 +49,9 @@ namespace MusicFlow.View
                 dgvMusicas.Rows[indiceDaLinha].Cells[12].Value = musica.LinkCifra;
             }
         }
-        private void atualizaGridFuncoes()
+        private async void atualizaGridFuncoes()
         {
-            var funcoesIntegrantes = integranteBandaController.BuscarIntegrantesAtivos();
+            var funcoesIntegrantes = await integranteBandaController.BuscarIntegrantesAtivos();
 
             dgvBanda.Rows.Clear();
 

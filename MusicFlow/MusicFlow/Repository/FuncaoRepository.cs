@@ -11,7 +11,7 @@ namespace MusicFlow.Repository
         private readonly SqlCommand cmd;
         public FuncaoRepository(string connectionString)
         {
-            conn = new SqlConnection(Configurations.Config.GetConnectionString(connectionString));
+            conn = new SqlConnection(connectionString);
             cmd = new SqlCommand();
             cmd.Connection = conn;
         }

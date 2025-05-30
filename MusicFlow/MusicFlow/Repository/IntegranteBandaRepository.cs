@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Configuration;
 using System.Data;
 using System.Threading.Tasks;
 using MusicFlow.Models;
@@ -36,7 +35,7 @@ namespace MusicFlow.Repository
                     {
                         Models.IntegranteBanda integrante = new Models.IntegranteBanda();
 
-                        Mapper(dr, integrante);
+                        await Mapper(dr, integrante);
 
                         listaDeIntegrantes.Add(integrante);
                     }
@@ -44,7 +43,7 @@ namespace MusicFlow.Repository
             }
             return listaDeIntegrantes;
         }
-        private void Mapper(SqlDataReader dr, IntegranteBanda integrante)
+        private async Task Mapper(SqlDataReader dr, IntegranteBanda integrante)
         {
             integrante.Id = (int)dr["Id"];
             integrante.Nome = dr["Nome"] as string;
@@ -52,165 +51,132 @@ namespace MusicFlow.Repository
             integrante.DataCadastro = (DateTime)dr["DataCadastro"];
             integrante.Status = (Status)Convert.ToInt32(dr["Status"]);
             integrante.Fone = dr["Fone"] as string;
-            integrante.Funcoes = CarregaListaFuncoes(integrante.Id ?? 0);
+            integrante.Funcoes = await CarregaListaFuncoes(integrante.Id ?? 0);
         }
-        public Models.IntegranteBanda ListarPorId(int id)
+        public async Task<Models.IntegranteBanda> Get(int id)
         {
-            string scriptSql =
-                "SELECT Id, Nome, DataAniversario, DataCadastro, Fone, Status " +
-                "FROM IntegranteBanda " +
-                "WHERE Status = 0 " +
-                "AND Id = @Id;";
+            Models.IntegranteBanda integrante = new Models.IntegranteBanda();
 
-            IntegranteBanda integrante = null;
-
-            using
-            (SqlConnection conn = new SqlConnection(_conexao))
+            using(conn)
             {
-                conn.Open();
+                await conn.OpenAsync();
 
-                using
-                (SqlCommand cmd = new SqlCommand(scriptSql, conn))
+                using(cmd)
                 {
+                    cmd.CommandText = "SELECT Id, Nome, DataAniversario, DataCadastro, Fone, Status FROM IntegranteBanda WHERE Status = 0 AND Id = @Id;";
+
                     cmd.Parameters.AddWithValue("@Id", id);
 
-                    SqlDataReader dr = cmd.ExecuteReader();
+                    SqlDataReader dr = await cmd.ExecuteReaderAsync();
 
-                    if (dr.Read())
+                    if (await dr.ReadAsync())
                     {
-                        integrante = new IntegranteBanda();
-
-                        integrante.Id = (int)dr["Id"];
-                        integrante.Nome = dr["Nome"] as string;
-                        integrante.Fone = dr["Fone"] as string;
-                        integrante.DataCadastro = (DateTime)dr["DataCadastro"];
-                        integrante.DataAniversario = (DateTime)dr["DataAniversario"];
-                        integrante.Status = (Status)Convert.ToInt32(dr["Status"]);
+                        await Mapper(dr, integrante);
                     }
                 }
             }
 
-            integrante.Funcoes = carregaListaFuncoes(id);
+            integrante.Funcoes = await CarregaListaFuncoes(id);
 
             return integrante;
         }
-        public Models.IntegranteBanda Adicionar(Models.IntegranteBanda integranteBanda)
+        public async Task Add(Models.IntegranteBanda integranteBanda)
         {
             int? idGerado = null;
 
-            integranteBanda.DataCadastro = DateTime.Now;
+            integranteBanda.DataCadastro = DateTime.Now;                
 
-            string scriptSql =
-                "INSERT INTO IntegranteBanda (Nome, DataAniversario, DataCadastro, Fone, Status) " +
-                "VALUES (@Nome, @DataAniversario, @DataCadastro, @Fone, @Status); " +
-                "SELECT SCOPE_IDENTITY();";
-
-            using (SqlConnection conn = new SqlConnection(_conexao))
+            using (conn)
             {
-                conn.Open();
+                await conn.OpenAsync();
 
-                using (SqlCommand cmd = new SqlCommand(scriptSql, conn))
+                using (cmd)
                 {
-                    cmd.Parameters.Add(new SqlParameter("@Nome", SqlDbType.VarChar)).Value = integranteBanda.Nome;
-                    cmd.Parameters.Add(new SqlParameter("@DataCadastro", SqlDbType.DateTime)).Value =  integranteBanda.DataCadastro;
-                    cmd.Parameters.Add(new SqlParameter("@Status", SqlDbType.Int)).Value =  integranteBanda.Status;
-                    cmd.Parameters.Add(new SqlParameter("@DataAniversario", SqlDbType.DateTime)).Value = integranteBanda.DataAniversario;
-                    cmd.Parameters.Add(new SqlParameter("@Fone", SqlDbType.VarChar)).Value = integranteBanda.Fone;
+                    cmd.CommandText = "INSERT INTO IntegranteBanda (Nome, DataAniversario, DataCadastro, Fone, Status) VALUES (@Nome, @DataAniversario, @DataCadastro, @Fone, @Status); SELECT SCOPE_IDENTITY();";
 
-                    idGerado = Convert.ToInt32(cmd.ExecuteScalar());
+                    MontaParametrosSql(cmd, integranteBanda);
+
+                    idGerado = Convert.ToInt32(await cmd.ExecuteScalarAsync());
                 }
             }
 
-            registraFuncoes(idGerado ?? 0, integranteBanda.Funcoes);
-
-            return ListarPorId(idGerado ?? 0);
+            await RegistraFuncoes(idGerado ?? 0, integranteBanda.Funcoes);
         }
-        public Models.IntegranteBanda Excluir(int id)
+        public async Task<bool> Delete(int id)
         {
-            string scriptSql =
-                "UPDATE IntegranteBanda SET Status = 1 WHERE Id = @Id;";
+            int linhasAfetadas = 0;
 
-            using (SqlConnection conn = new SqlConnection(_conexao))
+            using (conn)
             {
-                conn.Open();
+                await conn.OpenAsync();
 
-                using (SqlCommand cmd = new SqlCommand(scriptSql, conn))
+                using (cmd)
                 {
-                    cmd.Parameters.AddWithValue("@Id", id);
+                    cmd.CommandText = "UPDATE IntegranteBanda SET Status = 1 WHERE Id = @Id;";
 
-                    cmd.ExecuteNonQuery();
+                    cmd.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int)).Value = id;
+
+                    linhasAfetadas = await cmd.ExecuteNonQueryAsync();
                 }
             }
-            return ListarPorId(id);
+            return linhasAfetadas == 1;
         }
-        public Models.IntegranteBanda Alterar(int id, Models.IntegranteBanda integranteBanda)
+        public async Task<bool> Update(Models.IntegranteBanda integranteBanda)
         {
-            IntegranteBanda integranteAlterado = ListarPorId(id);
+            int linhasAfetadas = 0;
 
-            if (integranteAlterado == null) { return null; }
-
-            string scriptSql =
-                "UPDATE IntegranteBanda " +
-                "SET Nome = @Nome, DataCadastro = @DataCadastro, DataAniversario = @DataAniversario, Fone = @Fone) " +
-                "WHERE Id = @Id;";
-
-            using (SqlConnection conn = new SqlConnection(_conexao))
+            using (conn)
             {
-                conn.Open();
+                await conn.OpenAsync();
 
-                using (SqlCommand cmd = new SqlCommand(scriptSql, conn))
+                using (cmd)
                 {
-                    cmd.Parameters.AddWithValue("@Nome", integranteBanda.Nome);
-                    cmd.Parameters.AddWithValue("@DataCadastro", integranteBanda.DataCadastro);
-                    cmd.Parameters.AddWithValue("@DataAniversario", integranteBanda.DataAniversario);
-                    cmd.Parameters.AddWithValue("@DataAniversario", integranteBanda.Fone);
-                    cmd.Parameters.AddWithValue("@Id", id);
+                    cmd.CommandText = "UPDATE IntegranteBanda SET Nome = @Nome, DataCadastro = @DataCadastro, DataAniversario = @DataAniversario, Fone = @Fone) WHERE Id = @Id;";
 
-                    cmd.ExecuteNonQuery();
+                    MontaParametrosSql(cmd, integranteBanda);
+
+                    linhasAfetadas = await cmd.ExecuteNonQueryAsync();
                 }
             }
-            return ListarPorId(id);
+            return linhasAfetadas == 1;
         }
-        private void RegistraFuncoes(int id, List<Models.Funcao> funcoes)
-        {
-            string scriptSql =
-                "INSERT INTO IntegranteFuncao (IdIntegrante, IdFuncao) " +
-                "VALUES (@IdIntegrante, @IdFuncao);";
-
-            using (SqlConnection conn = new SqlConnection(_conexao))
+        private async Task RegistraFuncoes(int id, List<Models.Funcao> funcoes)
+        {               
+            using (conn)
             {
-                conn.Open();
+                await conn.OpenAsync();
 
                 foreach (var item in funcoes)
                 {
-                    using (SqlCommand cmd = new SqlCommand(scriptSql, conn))
+                    using (cmd)
                     {
+                        cmd.CommandText = "INSERT INTO IntegranteFuncao (IdIntegrante, IdFuncao) VALUES (@IdIntegrante, @IdFuncao);";
+
                         cmd.Parameters.AddWithValue("@IdIntegrante", id);
                         cmd.Parameters.AddWithValue("@IdFuncao", item.Id);
 
-                        cmd.ExecuteNonQuery();
+                        await cmd.ExecuteNonQueryAsync();
                     }
                 }
             }
         }
-        private List<Models.Funcao> CarregaListaFuncoes(int id)
+        private async Task<List<Models.Funcao>> CarregaListaFuncoes(int id)
         {
             List<Funcao> listaDeFuncoes = new List<Funcao>();
 
-            string scriptSql =
-                "SELECT Id, Nome, DataCadastro, Status FROM Funcao WHERE Id in (SELECT IdFuncao FROM IntegranteFuncao WHERE IdIntegrante = @Id) AND Status = 0;";
-
-            using (SqlConnection conn = new SqlConnection(_conexao))
+            using (conn)
             {
-                conn.Open();
+                await conn.OpenAsync();
 
-                using (SqlCommand cmd = new SqlCommand(scriptSql, conn))
+                using (cmd)
                 {
+                    cmd.CommandText = "SELECT Id, Nome, DataCadastro, Status FROM Funcao WHERE Id in (SELECT IdFuncao FROM IntegranteFuncao WHERE IdIntegrante = @Id) AND Status = 0;";
+
                     cmd.Parameters.AddWithValue("@Id", id);
 
-                    SqlDataReader dr = cmd.ExecuteReader();
+                    SqlDataReader dr = await cmd.ExecuteReaderAsync();
 
-                    while (dr.Read())
+                    while (await dr.ReadAsync())
                     {
                         listaDeFuncoes.Add(new Funcao
                         {
@@ -224,6 +190,17 @@ namespace MusicFlow.Repository
             }
 
             return listaDeFuncoes;
+        }
+        private void MontaParametrosSql(SqlCommand cmd, IntegranteBanda integranteBanda)
+        {
+            if (integranteBanda.Id != null)
+                cmd.Parameters.Add(new SqlParameter("@Id", SqlDbType.VarChar)).Value = integranteBanda.Id;
+
+            cmd.Parameters.Add(new SqlParameter("@Nome", SqlDbType.VarChar)).Value = integranteBanda.Nome;
+            cmd.Parameters.Add(new SqlParameter("@DataCadastro", SqlDbType.DateTime)).Value = integranteBanda.DataCadastro;
+            cmd.Parameters.Add(new SqlParameter("@Status", SqlDbType.Int)).Value = integranteBanda.Status;
+            cmd.Parameters.Add(new SqlParameter("@DataAniversario", SqlDbType.DateTime)).Value = integranteBanda.DataAniversario;
+            cmd.Parameters.Add(new SqlParameter("@Fone", SqlDbType.VarChar)).Value = integranteBanda.Fone;
         }
     }
 }
