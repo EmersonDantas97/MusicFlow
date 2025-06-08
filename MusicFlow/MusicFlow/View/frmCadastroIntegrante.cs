@@ -1,5 +1,6 @@
 ﻿using MusicFlow.Controller;
 using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MusicFlow.View
@@ -15,7 +16,7 @@ namespace MusicFlow.View
             integranteBandaController = new IntegrantesBandaController();
         }
 
-        private async void btnSalvar_Click(object sender, EventArgs e)
+        private void btnSalvar_Click(object sender, EventArgs e)
         {
             Models.IntegranteBanda i = new Models.IntegranteBanda();
             
@@ -25,21 +26,22 @@ namespace MusicFlow.View
             i.Fone = txtWhats.Text;
             i.Status = Models.Status.Ativo;
             
-            await integranteBandaController.AdicionarIntegrante(i);
+            integranteBandaController.AdicionarIntegrante(i);
         }
-        private async void frmCadastroIntegrante_Load(object sender, EventArgs e)
+        private void frmCadastroIntegrante_Load(object sender, EventArgs e)
         {
             CarregaGridFuncoes();
         }
 
-        private async void CarregaGridFuncoes()
+        private async Task CarregaGridFuncoes()
         {
-            await funcoesController.Get();
-
-            throw new NotImplementedException();
+            foreach (var item in await funcoesController.Get())
+            {
+                dgvFuncoes.Rows.Add(false, item.Nome, item.Id);
+            }
         }
 
-        private async void frmCadastroIntegrante_KeyDown(object sender, KeyEventArgs e)
+        private void frmCadastroIntegrante_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
             {
